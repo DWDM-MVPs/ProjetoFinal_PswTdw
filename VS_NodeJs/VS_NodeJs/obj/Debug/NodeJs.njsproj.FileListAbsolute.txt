@@ -1,0 +1,3 @@
+C:\Users\migcampos\Desktop\GitHub DWDM\ProjetoFinal_PswTdw\VS_NodeJs\VS_NodeJs\obj\Debug\NodeJs.njsprojAssemblyReference.cache
+C:\Users\migcampos\Desktop\GitHub DWDM\ProjetoFinal_PswTdw\VS_NodeJs\VS_NodeJs\obj\Debug\NodeJs.njsproj.CoreCompileInputs.cache
+C:\Users\migcampos\Desktop\GitHub DWDM\ProjetoFinal_PswTdw\VS_NodeJs\VS_NodeJs\bin\Microsoft.NodejsTools.WebRole.dll

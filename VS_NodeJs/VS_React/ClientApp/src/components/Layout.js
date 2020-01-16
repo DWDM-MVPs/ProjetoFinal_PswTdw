@@ -12,7 +12,7 @@ export class Layout extends Component {
           <Col sm={3}>
             <NavMenu />
           </Col>
-          <Col sm={9}>
+          <Col sm={8}>
             {this.props.children}
           </Col>
         </Row>

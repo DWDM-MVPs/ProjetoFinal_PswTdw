@@ -1,0 +1,24 @@
+Utilizadores
+{
+	ID
+	Nome
+	Password
+	IsAdmin
+	Carrinho
+	[
+		ID_Produtos
+	]
+	Historico
+	[
+		ID_Produtos
+	]
+}
+
+Produtos
+{
+	ID
+	Nome
+	Stock
+	Allergens
+	IsActive
+}

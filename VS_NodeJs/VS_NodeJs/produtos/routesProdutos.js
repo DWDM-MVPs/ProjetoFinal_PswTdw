@@ -9,7 +9,7 @@ let routesProdutos = require("express").Router();
 var apiProdutos = require("./apiProdutos");
 
 routesProdutos.route("/produtos/get-produtos").get(apiProdutos.getAll);
-routesProdutos.route("/produtos/get-produtos/by-id").get(apiProdutos.getById);
+routesProdutos.route("/produtos/get-produtos/by-name").get(apiProdutos.getByName);
 
 routesProdutos.route("/produtos/add-produto").post(apiProdutos.addProduto);
 

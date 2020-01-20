@@ -23,7 +23,7 @@ exports.getAll = function (req, res) {
 
 
 // GET BY ID
-exports.getById = function (req, res) {
+exports.getByName = function (req, res) {
 	schemaProdutos.findById(req.params.id_nota, function (err, produtos) {
 		if (error) {
 			res.status(404).send(error);

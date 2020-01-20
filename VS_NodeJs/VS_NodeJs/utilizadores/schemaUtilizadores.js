@@ -1,7 +1,7 @@
 ﻿var mongoose = require('mongoose');
 
 // SETUP
-var schemaUtilizadores = mongoose.Schema({
+var SchemaUtilizadores = mongoose.Schema({
 	_id: {
 		type: String,
 		required: true,
@@ -16,24 +16,20 @@ var schemaUtilizadores = mongoose.Schema({
 		type: Boolean,
 		default: false,
 	},
-	carrinho: [
-		{
-			ID_Produto: {
-				type: Number,
-			},
+	carrinho: [{
+		idProduto: {
+			type: Number,
 		},
-	],
-	historico: [
-		{
-			ID_Produto: {
-				type: Number,
-			}
+	}],
+	historico: [{
+		idProduto: {
+			type: Number,
 		}
-	],
+	}],
 });
 
 // EXPORT
-var Utilizadores = module.exports = mongoose.model('utilizadores', notasSchema);
+var Utilizadores = module.exports = mongoose.model('utilizadores', SchemaUtilizadores);
 
 module.exports.get = function (callback, limit) {
 	Utilizadores.find(callback).limit(limit);

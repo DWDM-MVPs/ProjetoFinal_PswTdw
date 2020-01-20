@@ -9,7 +9,7 @@ var schemaProdutos = require('./schemaProdutos');
 
 
 
-// GET ALL
+// ❎ GET ALL PRODUTOS
 exports.getAll = function (req, res) {
 	schemaProdutos.get(function (err, produtos) {
 		if (error) {
@@ -22,7 +22,7 @@ exports.getAll = function (req, res) {
 
 
 
-// GET BY ID
+// ❎ GET PRODUTO BY NAME
 exports.getByName = function (req, res) {
 	schemaProdutos.findById(req.params.id_nota, function (err, produtos) {
 		if (error) {
@@ -35,7 +35,7 @@ exports.getByName = function (req, res) {
 
 
 
-// ADD PRODUTO
+// ✅ ADD PRODUTO
 exports.addProduto = function (req, res) {
 	console.log("[REQUEST]: addProduto (POST)");
 	var novoProduto = new schemaProdutos({
@@ -58,7 +58,7 @@ exports.addProduto = function (req, res) {
 
 
 
-// UPDATE PRODUTO
+// ❎ UPDATE PRODUTO
 exports.update = function (req, res) {
 	schemaProdutos.findById(req.params.id_nota, function (error, product) {
 		if (error) {
@@ -80,21 +80,21 @@ exports.update = function (req, res) {
 
 
 
-// UPDATE PRECO PRODUTO
+// ❎ UPDATE PRECO PRODUTO
 exports.updatePreco = function (req, res) {
 
 };
 
 
 
-// UPDATE STOCK PRODUTO
+// ❎ UPDATE STOCK PRODUTO
 exports.updateStock = function (req, res) {
 
 };
 
 
 
-// DELETE
+// ❎ DELETE PRODUTO
 exports.delete = function (req, res) {
 	schemaProdutos.deleteOne({ _id: req.params.id_nota }, function (err, nota) {
 		if (error) {

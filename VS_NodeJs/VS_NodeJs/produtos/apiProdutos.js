@@ -9,9 +9,9 @@ var schemaProdutos = require('./schemaProdutos');
 
 
 
-// ❎ GET ALL PRODUTOS
+// ✅ GET ALL PRODUTOS
 exports.getAll = function (req, res) {
-	schemaProdutos.get(function (err, produtos) {
+	schemaProdutos.get(function (error, produtos) {
 		if (error) {
 			res.status(404).send(error);
 		}

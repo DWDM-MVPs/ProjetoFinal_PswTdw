@@ -1,5 +1,7 @@
 ﻿// IMPORT SCHEMA
 var schemaProdutos = require('./schemaProdutos');
+var functions = require("../functions");
+var log = functions.log;
 
 
 
@@ -11,28 +13,29 @@ var schemaProdutos = require('./schemaProdutos');
 
 // ✅ GET ALL PRODUTOS
 exports.getAll = function (req, res) {
+	log("r", "s", "getAll (GET - Produtos)");
 	schemaProdutos.get(function (error, produtos) {
 		if (error) {
+			log("e", error);
 			res.status(404).send(error);
 		}
-
-		res.status(200).send(produtos);
+		log("s", "e", produtos);
+		res.status(200).json(produtos).send();
 	});
 };
 
 
 
-// ❎ GET PRODUTO BY NAME
+// ✅ GET PRODUTO BY NAME
 exports.getByName = function (req, res) {
-	schemaProdutos.findOne({ name: req.params.name }, function (error, product) {
+	log("r", "s", "getByName (GET - Produtos)")
+	schemaProdutos.findOne({ name: req.body.name }, function (error, produto) {
 		if (error) {
-			res.status(404).send(error);
+			log("e", "e", error);
+			res.status(404).json(error).send();
 		}
-		res.status(200).json(product).send();
-	});
-	schemaProdutos.findOne(req.params.id_nota, function (err, produtos) {
-
-		res.status(200).send(produtos);
+		log("s", "e", produto);
+		res.status(200).json(produto).send();
 	});
 };
 
@@ -40,7 +43,7 @@ exports.getByName = function (req, res) {
 
 // ✅ ADD PRODUTO
 exports.addProduto = function (req, res) {
-	console.log("[REQUEST]: addProduto (POST)");
+	log("r", "s", "addProduto (POST - Produtos)");
 	var novoProduto = new schemaProdutos({
 		name: req.body.name,
 		stock: req.body.stock,
@@ -48,13 +51,12 @@ exports.addProduto = function (req, res) {
 		isActive: req.body.isActive,
 	});
 
-
 	novoProduto.save(function (error) {
 		if (error) {
-			console.log("[ERRO] " + error);
-			res.status(500).send("erro");
+			log("e", "e", error);
+			res.status(500).json(error).send();
 		}
-		console.log("[PRODUTO +] Name: " + req.body.name + " | Stock: " + req.body.stock + " | Allergens: " + req.body.isActive + ".");
+		log("c", "e", "Name: " + req.body.name + " | Stock: " + req.body.stock + " | Allergens: " + req.body.allergens + " | Is Active: " + req.body.isActive);
 		res.status(201).send();
 	});
 };
@@ -62,26 +64,29 @@ exports.addProduto = function (req, res) {
 
 
 // ❎ UPDATE PRODUTO
-exports.update = function (req, res) {
-	if (error) {
-		res.status(401).send(error);
-	}
+exports.updateProduto = function (req, res) {
+	log("r", "s", "updateProduto (POST - Produtos)");
 
+	schemaProdutos.findOne({ name: req.body.oldName }, function (error, produto) {
+		if (error) {
+			log("e", "e", error);
+			res.status(500).json(error).send();
+		}
 
-	try {
-		shemaProdutos.updateOne({ name: 'Jean-Luc Picard' },
-			{
-				name: req.body.name,
-				stock: req.body.stock,
-				allergens: req.body.allergens,
-				isActive: req.body.isActive,
+		produto.name = req.body.name;
+		produto.stock = req.body.stock;
+		product.allergens = req.body.allergens;
+		product.isActive = req.body.isActive;
+
+		product.save(function (error) {
+			if (error) {
+				log("e", "e", error);
+				res.status(500).json(error).send();
 			}
-		);
-		res.status(201).send();
-	}
-	catch (error) {
-		res.status(401).send(error);
-	}
+
+			res.status(204).send();
+		})
+	});
 };
 
 
@@ -110,3 +115,13 @@ exports.delete = function (req, res) {
 		res.status(200).send("Produto apagado com sucesso.");
 	});
 };
+
+
+
+
+//async function getProduct(req, res, next) {
+//	let product;
+//	try {
+//		product = await schemaProdutos.findById(req.params.id)
+//	}
+//}

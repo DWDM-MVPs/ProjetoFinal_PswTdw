@@ -52,6 +52,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="server.js" />
+    <Compile Include="functions.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Content Include="package.json" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,8 @@
+HTTP Status Codes:
+- https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+
+Mongoose FindOne:
+- https://mongoosejs.com/docs/api.html#model_Model.findOne
+
+Mongoose UpdateOne:
+- https://mongoosejs.com/docs/api.html#model_Model.updateOne

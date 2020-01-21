@@ -95,7 +95,25 @@ exports.updateProduto = function (req, res) {
 
 // ❎ UPDATE PRECO PRODUTO
 exports.updatePreco = function (req, res) {
+	log("r", "s", "updatePrecoProduto (POST - Produtos)");
 
+	schemaProdutos.findOne({ name: req.body.name }, function (error, produto) {
+		if (error) {
+			log("e", "e", error);
+			res.status(500).json(error).send();
+		}
+
+		produto.price = req.body.price;
+
+		produto.save(function (error) {
+			if (error) {
+				log("e", "e", error);
+				res.status(500).json(error).send();
+			}
+
+			res.status(204).send();
+		})
+	});
 };
 
 

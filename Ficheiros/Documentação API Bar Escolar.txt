@@ -1,0 +1,38 @@
+╔╗
+ ╠═══════════════════════════════╗
+ ║ API - Produtos /api/produtos/ ║
+ ╠═══════════════════════════════╩══════════════════════════════════════════════════════════╗
+ ║																							║
+ ║ > Pesquisar todos os produtos 			GET/get-produtos								║
+ ║																							║
+ ║ Body: <nada>																				║
+ ║																							║
+ ║ Response:																				║
+ ║	JSON com informações de todos os produtos.												║
+ ║																							║
+ ╟──────────────────────────────────────────────────────────────────────────────────────────╢
+ ║																							║
+ ║ > Pesquisar um produto em especifico 		POST/get-produtos/by-name					║
+ ║																							║
+ ║ Body:																					║
+ ║	"name" 		(string): 	Nome do produto a pesquisar.									║
+ ║																							║
+ ║ Response:																				║
+ ║	JSON com as informações do produto encontrado.											║
+ ║	Caso não tenha sido encontrado um produto, devolve 'null'.								║
+ ║																							║
+ ╟──────────────────────────────────────────────────────────────────────────────────────────╢
+ ║																							║
+ ║ > Adicionar um novo produto 				POST/add-produto								║
+ ║																							║
+ ║ Body:																					║
+ ║	"name" 		(string): 	Nome do produto a adiconar.										║
+ ║	"stock" 	(int)	: 	Quantidade em stock do produto a adicionar.						║
+ ║	"allergens" (string): 	Lista de alergias que o produto pode causar.					║
+ ║	"isActive" 	(bool)	: 	Indica se o produto está ativo ou não.							║
+ ║																							║
+ ║ Response: <nada>																			║
+ ║																							║
+ ╠══════════════════════════════════════════════════════════════════════════════════════════╝
+ ╠╗
+╚╝╚╛

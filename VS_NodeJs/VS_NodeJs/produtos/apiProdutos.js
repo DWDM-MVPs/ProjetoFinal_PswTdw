@@ -145,12 +145,14 @@ exports.updateStock = function (req, res) {
 
 // ❎ DELETE PRODUTO
 exports.delete = function (req, res) {
+	log("r", "s", "deleteProduto (DELETE - Produtos)");
 	schemaProdutos.deleteOne({ _id: req.params.id_nota }, function (err, nota) {
 		if (error) {
+			log("e", "e", error);
 			res.send(error);
 		}
-
-		res.status(200).send("Produto apagado com sucesso.");
+		log("d", "e", "Nome: " + req.body.nome);
+		res.status(204).send();
 	});
 };
 

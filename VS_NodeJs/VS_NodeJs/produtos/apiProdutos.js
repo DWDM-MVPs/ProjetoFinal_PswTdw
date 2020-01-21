@@ -120,7 +120,25 @@ exports.updatePreco = function (req, res) {
 
 // ❎ UPDATE STOCK PRODUTO
 exports.updateStock = function (req, res) {
+	log("r", "s", "updateStockProduto (POST - Produtos)");
 
+	schemaProdutos.findOne({ name: req.body.name }, function (error, produto) {
+		if (error) {
+			log("e", "e", error);
+			res.status(500).json(error).send();
+		}
+
+		produto.stock = req.body.stock;
+
+		produto.save(function (error) {
+			if (error) {
+				log("e", "e", error);
+				res.status(500).json(error).send();
+			}
+
+			res.status(204).send();
+		})
+	});
 };
 
 

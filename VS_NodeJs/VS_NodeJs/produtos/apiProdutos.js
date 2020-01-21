@@ -66,7 +66,7 @@ exports.update = function (req, res) {
 		}
 
 		product.name = req.body.name;
-		product. = req.body.disciplina;
+		product.disciplina = req.body.disciplina;
 		product.nota = req.body.nota;
 
 		product.save(function (error) {

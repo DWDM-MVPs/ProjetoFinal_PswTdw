@@ -7,6 +7,7 @@
 		else if (t == "s") pre = "SENT";
 		else if (t == "c") pre == "CREATE";
 		else if (t == "l") pre == "LOG";
+		else if (t == "d") pre = "DELETE";
 
 
 

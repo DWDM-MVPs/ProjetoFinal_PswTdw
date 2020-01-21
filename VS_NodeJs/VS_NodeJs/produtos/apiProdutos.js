@@ -47,6 +47,7 @@ exports.addProduto = function (req, res) {
 	var novoProduto = new schemaProdutos({
 		name: req.body.name,
 		stock: req.body.stock,
+		price: req.body.price,
 		allergens: req.body.allergens,
 		isActive: req.body.isActive,
 	});
@@ -56,7 +57,7 @@ exports.addProduto = function (req, res) {
 			log("e", "e", error);
 			res.status(500).json(error).send();
 		}
-		log("c", "e", "Name: " + req.body.name + " | Stock: " + req.body.stock + " | Allergens: " + req.body.allergens + " | Is Active: " + req.body.isActive);
+		log("c", "e", "Name: " + req.body.name + " | Stock: " + req.body.stock + " | Price: " + req.body.price + " | Allergens: " + req.body.allergens + " | Is Active: " + req.body.isActive);
 		res.status(201).send();
 	});
 };
@@ -75,6 +76,7 @@ exports.updateProduto = function (req, res) {
 
 		produto.name = req.body.name;
 		produto.stock = req.body.stock;
+		produto.price = req.body.price;
 		produto.allergens = req.body.allergens;
 		produto.isActive = req.body.isActive;
 

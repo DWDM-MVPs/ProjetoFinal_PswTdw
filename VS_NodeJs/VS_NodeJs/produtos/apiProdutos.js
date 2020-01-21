@@ -24,10 +24,13 @@ exports.getAll = function (req, res) {
 
 // ❎ GET PRODUTO BY NAME
 exports.getByName = function (req, res) {
-	schemaProdutos.findById(req.params.id_nota, function (err, produtos) {
+	schemaProdutos.findOne({ name: req.params.name }, function (error, product) {
 		if (error) {
 			res.status(404).send(error);
 		}
+		res.status(200).json(product).send();
+	});
+	schemaProdutos.findOne(req.params.id_nota, function (err, produtos) {
 
 		res.status(200).send(produtos);
 	});
@@ -60,22 +63,25 @@ exports.addProduto = function (req, res) {
 
 // ❎ UPDATE PRODUTO
 exports.update = function (req, res) {
-	schemaProdutos.findById(req.params.id_nota, function (error, product) {
-		if (error) {
-			res.send(error);
-		}
+	if (error) {
+		res.status(401).send(error);
+	}
 
-		product.name = req.body.name;
-		product.disciplina = req.body.disciplina;
-		product.nota = req.body.nota;
 
-		product.save(function (error) {
-			if (error) {
-				res.json(error);
+	try {
+		shemaProdutos.updateOne({ name: 'Jean-Luc Picard' },
+			{
+				name: req.body.name,
+				stock: req.body.stock,
+				allergens: req.body.allergens,
+				isActive: req.body.isActive,
 			}
-			res.status(204).send();
-		});
-	});
+		);
+		res.status(201).send();
+	}
+	catch (error) {
+		res.status(401).send(error);
+	}
 };
 
 

@@ -75,10 +75,10 @@ exports.updateProduto = function (req, res) {
 
 		produto.name = req.body.name;
 		produto.stock = req.body.stock;
-		product.allergens = req.body.allergens;
-		product.isActive = req.body.isActive;
+		produto.allergens = req.body.allergens;
+		produto.isActive = req.body.isActive;
 
-		product.save(function (error) {
+		produto.save(function (error) {
 			if (error) {
 				log("e", "e", error);
 				res.status(500).json(error).send();

@@ -162,7 +162,7 @@ apiProdutos.route("/produtos/update-produto/only-stock").post(function (req, res
 apiProdutos.route("/produtos/delete-produto").post(function (req, res) {
 	log("r", "s", "deleteProduto (POST - Produtos)");
 
-	schemaProdutos.deleteOne({ name: req.body.name }, function (err, nota) {
+	schemaProdutos.deleteOne({ name: req.body.name }, function (error, nota) {
 		if (error) {
 			log("e", "e", error);
 			res.send(error);

@@ -15,8 +15,8 @@ let apiProdutos = require("express").Router();
 
 
 // ✅ GET ALL PRODUTOS
-apiProdutos.route("/produtos/get-produtos").get(function (req, res) {
-	log("r", "s", "getAll (GET - Produtos)");
+apiProdutos.route("/produtos/get-produtos").post(function (req, res) {
+	log("r", "s", "getAll (POST - Produtos)");
 
 	schemaProdutos.get(function (error, produtos) {
 		if (error) {
@@ -32,8 +32,9 @@ apiProdutos.route("/produtos/get-produtos").get(function (req, res) {
 
 
 // ✅ GET PRODUTO BY NAME
-apiProdutos.route("/produtos/get-produtos/by-name").get(function (req, res) {
-	log("r", "s", "getByName (GET - Produtos)")
+apiProdutos.route("/produtos/get-produtos/by-name").post(function (req, res) {
+	log("r", "s", "getByName (POST - Produtos)")
+	log("i", "", "Received data: " + req.body.name);
 
 	schemaProdutos.findOne({ name: req.body.name }, function (error, produto) {
 		if (error) {
@@ -159,8 +160,8 @@ apiProdutos.route("/produtos/update-produto/by-name/only-stock").post(function (
 
 
 // ❎ DELETE PRODUTO
-apiProdutos.route("/produtos/delete/:nameProduto").delete(function (req, res) {
-	log("r", "s", "deleteProduto (DELETE - Produtos)");
+apiProdutos.route("/produtos/delete/:nameProduto").post(function (req, res) {
+	log("r", "s", "deleteProduto (POST - Produtos)");
 
 	schemaProdutos.deleteOne({ _id: req.params.id_nota }, function (err, nota) {
 		if (error) {

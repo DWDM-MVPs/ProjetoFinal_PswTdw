@@ -158,7 +158,7 @@ apiProdutos.route("/produtos/update-produto/only-stock").post(function (req, res
 
 
 
-// ❎ DELETE PRODUTO
+// ✅ DELETE PRODUTO
 apiProdutos.route("/produtos/delete-produto").post(function (req, res) {
 	log("r", "s", "deleteProduto (POST - Produtos)");
 

@@ -1,7 +1,7 @@
 ﻿var mongoose = require('mongoose');
 
 // SETUP
-var SchemaUtilizadores = mongoose.Schema({
+var SchemaUsers = mongoose.Schema({
 	nome: {
 		type: String,
 		required: true,
@@ -28,8 +28,8 @@ var SchemaUtilizadores = mongoose.Schema({
 });
 
 // EXPORT
-var Utilizadores = module.exports = mongoose.model('utilizadores', SchemaUtilizadores);
+var Users = module.exports = mongoose.model('users', SchemaUsers);
 
 module.exports.get = function (callback, limit) {
-	Utilizadores.find(callback).limit(limit);
+	Users.find(callback).limit(limit);
 }

@@ -15,7 +15,7 @@ let apiUsers = require("express").Router();
 
 
 // ❎ GET USER BY NAME
-apiUsers.route("/users/get-users/by-name").post(function (req, res) {
+apiUsers.route("/users/get-user/by-name").post(function (req, res) {
 	log("r", "s", "getByName (GET - Users)")
 
 	schemaUtilizadores.findOne({ name: req.body.name }, function (error, produto) {

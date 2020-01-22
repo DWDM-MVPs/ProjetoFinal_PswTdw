@@ -1,4 +1,4 @@
-﻿// IMPORT SCHEMA
+﻿// SCHEMA
 var schemaProdutos = require('./schemaProdutos');
 var functions = require("../functions");
 var log = functions.log;

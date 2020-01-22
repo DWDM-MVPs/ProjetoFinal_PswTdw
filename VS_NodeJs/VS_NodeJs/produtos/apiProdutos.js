@@ -104,7 +104,7 @@ apiProdutos.route("/produtos/update-produto").post(function (req, res) {
 
 
 
-// ❎ UPDATE PRECO PRODUTO
+// ✅ UPDATE PRECO PRODUTO
 apiProdutos.route("/produtos/update-produto/only-price").post(function (req, res) {
 	log("r", "s", "updatePrecoProduto (POST - Produtos)");
 

@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import './NavMenu.css';
+import '../css/NavMenu.css';
 
 export class NavMenu extends Component {
   displayName = NavMenu.name
@@ -20,17 +20,22 @@ export class NavMenu extends Component {
           <Nav>
             <LinkContainer to={'/'} exact>
               <NavItem>
-                <Glyphicon glyph='home' /> Home
+                <Glyphicon glyph='apple' /> Produtos
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/counter'}>
+            <LinkContainer to={'/carrinho'}>
               <NavItem>
-                <Glyphicon glyph='education' /> Dashboard
+                <Glyphicon glyph='shopping-cart' /> Carrinho
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/fetchdata'}>
+            <LinkContainer to={'/login'}>
               <NavItem>
-                <Glyphicon glyph='th-list' /> Admin
+                <Glyphicon glyph='log-in' /> Login
+              </NavItem>
+            </LinkContainer>
+            <LinkContainer to={'/dashboard'}>
+              <NavItem>
+                <Glyphicon glyph='list-alt' /> Dashboard
               </NavItem>
             </LinkContainer>
           </Nav>

@@ -17,11 +17,13 @@ let apiProdutos = require("express").Router();
 // ✅ GET ALL PRODUTOS
 apiProdutos.route("/produtos/get-produtos").get(function (req, res) {
 	log("r", "s", "getAll (GET - Produtos)");
+
 	schemaProdutos.get(function (error, produtos) {
 		if (error) {
 			log("e", error);
 			res.status(404).send(error);
 		}
+
 		log("s", "e", produtos);
 		res.status(200).json(produtos).send();
 	});
@@ -32,11 +34,13 @@ apiProdutos.route("/produtos/get-produtos").get(function (req, res) {
 // ✅ GET PRODUTO BY NAME
 apiProdutos.route("/produtos/get-produtos/by-name").get(function (req, res) {
 	log("r", "s", "getByName (GET - Produtos)")
+
 	schemaProdutos.findOne({ name: req.body.name }, function (error, produto) {
 		if (error) {
 			log("e", "e", error);
 			res.status(404).json(error).send();
 		}
+
 		log("s", "e", produto);
 		res.status(200).json(produto).send();
 	});
@@ -47,6 +51,7 @@ apiProdutos.route("/produtos/get-produtos/by-name").get(function (req, res) {
 // ✅ ADD PRODUTO
 apiProdutos.route("/produtos/add-produto").post(function (req, res) {
 	log("r", "s", "addProduto (POST - Produtos)");
+
 	var novoProduto = new schemaProdutos({
 		name: req.body.name,
 		stock: req.body.stock,
@@ -60,6 +65,7 @@ apiProdutos.route("/produtos/add-produto").post(function (req, res) {
 			log("e", "e", error);
 			res.status(500).json(error).send();
 		}
+
 		log("c", "e", "Name: " + req.body.name + " | Stock: " + req.body.stock + " | Price: " + req.body.price + " | Allergens: " + req.body.allergens + " | Is Active: " + req.body.isActive);
 		res.status(201).send();
 	});
@@ -77,6 +83,7 @@ apiProdutos.route("/produtos/update-produto").patch(function (req, res) {
 			res.status(500).json(error).send();
 		}
 
+		var pre = produto;
 		produto.name = req.body.name;
 		produto.stock = req.body.stock;
 		produto.price = req.body.price;
@@ -89,6 +96,7 @@ apiProdutos.route("/produtos/update-produto").patch(function (req, res) {
 				res.status(500).json(error).send();
 			}
 
+			log("u", "e", "Produto: " + req.body.oldName + " | Nome: " + req.body.name + " (" + req.body.oldName + ") | Stock: " + req.body.stock + " (" + pre.stock + ") | Price: " + req.body.price + " (" + pre.price + ") | Allergens: " + req.body.allergens + " (" + pre.allergens + ") | Is Active: " + req.body.isActive + " (" + pre.isActive + ")");
 			res.status(204).send();
 		})
 	});
@@ -106,6 +114,7 @@ apiProdutos.route("/produtos/update-produto/by-name/only-price").post(function (
 			res.status(500).json(error).send();
 		}
 
+		var pre = produto;
 		produto.price = req.body.price;
 
 		produto.save(function (error) {
@@ -114,6 +123,7 @@ apiProdutos.route("/produtos/update-produto/by-name/only-price").post(function (
 				res.status(500).json(error).send();
 			}
 
+			log("u", "e", "Produto: " + req.body.name + " (" + pre.name + ") | Price: " + req.body.price + " (" + pre.price + ")");
 			res.status(204).send();
 		})
 	});
@@ -131,6 +141,7 @@ apiProdutos.route("/produtos/update-produto/by-name/only-stock").post(function (
 			res.status(500).json(error).send();
 		}
 
+		var pre = produto;
 		produto.stock = req.body.stock;
 
 		produto.save(function (error) {
@@ -139,6 +150,7 @@ apiProdutos.route("/produtos/update-produto/by-name/only-stock").post(function (
 				res.status(500).json(error).send();
 			}
 
+			log("u", "e", "Produto: " + req.body.name + " (" + pre.name + ") | Stock: " + req.body.stock + " (" + pre.stock + ")");
 			res.status(204).send();
 		})
 	});
@@ -149,11 +161,13 @@ apiProdutos.route("/produtos/update-produto/by-name/only-stock").post(function (
 // ❎ DELETE PRODUTO
 apiProdutos.route("/produtos/delete/:nameProduto").delete(function (req, res) {
 	log("r", "s", "deleteProduto (DELETE - Produtos)");
+
 	schemaProdutos.deleteOne({ _id: req.params.id_nota }, function (err, nota) {
 		if (error) {
 			log("e", "e", error);
 			res.send(error);
 		}
+
 		log("d", "e", "Nome: " + req.body.nome);
 		res.status(204).send();
 	});

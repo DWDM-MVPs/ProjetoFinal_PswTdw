@@ -8,6 +8,7 @@
 		else if (t == "c") pre = "CREATE";
 		else if (t == "l") pre = "LOG";
 		else if (t == "d") pre = "DELETE";
+		else if (t == "u") pre = "UPDATE";
 
 
 

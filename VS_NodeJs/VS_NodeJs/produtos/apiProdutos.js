@@ -74,7 +74,7 @@ apiProdutos.route("/produtos/add-produto").post(function (req, res) {
 
 
 
-// ❎ UPDATE PRODUTO
+// ✅ UPDATE PRODUTO
 apiProdutos.route("/produtos/update-produto").post(function (req, res) {
 	log("r", "s", "updateProduto (POST - Produtos)");
 

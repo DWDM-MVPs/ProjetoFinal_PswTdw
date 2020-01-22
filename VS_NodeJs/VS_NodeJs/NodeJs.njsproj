@@ -30,7 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="carrinhos\routesCarrinhos.js">
+    <Compile Include="carrinhos\apiCarrinhos.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="carrinhos\schemaCarrinhos.js">
@@ -42,7 +42,7 @@
     <Compile Include="produtos\schemaProdutos.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="utilizadores\routesUtilizadores.js">
+    <Compile Include="utilizadores\apiUtilizadores.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="utilizadores\schemaUtilizadores.js">

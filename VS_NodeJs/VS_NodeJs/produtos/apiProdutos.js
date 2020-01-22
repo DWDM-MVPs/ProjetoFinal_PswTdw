@@ -66,7 +66,7 @@ apiProdutos.route("/produtos/add-produto").post(function (req, res) {
 			res.status(500).json(error).send();
 		}
 
-		log("c", "e", "Name: " + req.body.name + " | Stock: " + req.body.stock + " | Price: " + req.body.price + " | Allergens: " + req.body.allergens + " | Is Active: " + req.body.isActive);
+		log("c", "e", "Name: " + req.body.name + "\nStock: " + req.body.stock + "\nPrice: " + req.body.price + "\nAllergens: " + req.body.allergens + "\nIs Active: " + req.body.isActive);
 		res.status(201).send();
 	});
 });
@@ -96,7 +96,7 @@ apiProdutos.route("/produtos/update-produto").patch(function (req, res) {
 				res.status(500).json(error).send();
 			}
 
-			log("u", "e", "Produto: " + req.body.oldName + " | Nome: " + req.body.name + " (" + req.body.oldName + ") | Stock: " + req.body.stock + " (" + pre.stock + ") | Price: " + req.body.price + " (" + pre.price + ") | Allergens: " + req.body.allergens + " (" + pre.allergens + ") | Is Active: " + req.body.isActive + " (" + pre.isActive + ")");
+			log("u", "e", "Produto: " + req.body.oldName + "\nNome: " + req.body.name + " (" + req.body.oldName + ")\nStock: " + req.body.stock + " (" + pre.stock + ")\nPrice: " + req.body.price + " (" + pre.price + ")\nAllergens: " + req.body.allergens + " (" + pre.allergens + ")\nIs Active: " + req.body.isActive + " (" + pre.isActive + ")");
 			res.status(204).send();
 		})
 	});
@@ -123,7 +123,7 @@ apiProdutos.route("/produtos/update-produto/by-name/only-price").post(function (
 				res.status(500).json(error).send();
 			}
 
-			log("u", "e", "Produto: " + req.body.name + " (" + pre.name + ") | Price: " + req.body.price + " (" + pre.price + ")");
+			log("u", "e", "Produto: " + req.body.name + " (" + pre.name + ")\nPrice: " + req.body.price + " (" + pre.price + ")");
 			res.status(204).send();
 		})
 	});
@@ -150,7 +150,7 @@ apiProdutos.route("/produtos/update-produto/by-name/only-stock").post(function (
 				res.status(500).json(error).send();
 			}
 
-			log("u", "e", "Produto: " + req.body.name + " (" + pre.name + ") | Stock: " + req.body.stock + " (" + pre.stock + ")");
+			log("u", "e", "Produto: " + req.body.name + " (" + pre.name + ")\nStock: " + req.body.stock + " (" + pre.stock + ")");
 			res.status(204).send();
 		})
 	});

@@ -26,6 +26,7 @@
  ║ [Body]																					║
  ║	"name" 		(string)	: 	Nome do produto a adiconar.									║
  ║	"stock" 	(int)		: 	Quantidade em stock do produto a adicionar.					║
+ ║	"price"		(decimal)	: 	Preço do produto.											║
  ║	"allergens" (string)	: 	Lista de alergias que o produto pode causar.				║
  ║	"isActive" 	(bool)		: 	Indica se o produto está ativo ou não.						║
  ║																							║

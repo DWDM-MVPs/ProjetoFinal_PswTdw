@@ -6,7 +6,7 @@
 		else if (t == "e") pre = "ERROR";
 		else if (t == "s") pre = "SENT";
 		else if (t == "c") pre = "CREATE";
-		else if (t == "l") pre = "LOG";
+		else if (t == "l") pre = "LOGIN";
 		else if (t == "d") pre = "DELETE";
 		else if (t == "u") pre = "UPDATE";
 

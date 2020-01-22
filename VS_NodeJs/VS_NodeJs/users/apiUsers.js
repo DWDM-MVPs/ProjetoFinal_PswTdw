@@ -14,7 +14,7 @@ let apiUsers = require("express").Router();
 
 
 
-// ❎ GET USER BY NAME
+// ✅ GET USER BY NAME
 apiUsers.route("/users/get-user/by-name").post(function (req, res) {
 	log("r", "s", "getByName (GET - Users)")
 

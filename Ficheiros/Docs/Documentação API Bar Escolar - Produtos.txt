@@ -1,0 +1,106 @@
+╔╗
+ ╠═══════════════════════════════╗
+ ║ API - Produtos /api/produtos/ ║
+ ╠═══════════════════════════════╩══════════════════════════════════════════════════════════╗
+ ║																							║
+ ║ > Pesquisar todos os produtos 				POST/get-produtos							║
+ ║																							║
+ ║ [Body]																					║
+ ║	<nada>																					║
+ ║																							║
+ ║ [Response] schemaProdutos																║
+ ║																							║
+ ╟──────────────────────────────────────────────────────────────────────────────────────────╢
+ ║																							║
+ ║ > Pesquisar um produto em especifico 		POST/get-produtos							║
+ ║																							║
+ ║ [Body]																					║
+ ║	"name" 		(string)	: 	Nome do produto a pesquisar.								║
+ ║																							║
+ ║ [Response] schemaProduto																	║
+ ║																							║
+ ╟──────────────────────────────────────────────────────────────────────────────────────────╢
+ ║																							║
+ ║ > Adicionar um novo produto 					POST/add-produto							║
+ ║																							║
+ ║ [Body]																					║
+ ║	"name" 		(string)	: 	Nome do produto a adiconar.									║
+ ║	"stock" 	(int)		: 	Quantidade em stock do produto a adicionar.					║
+ ║	"allergens" (string)	: 	Lista de alergias que o produto pode causar.				║
+ ║	"isActive" 	(bool)		: 	Indica se o produto está ativo ou não.						║
+ ║																							║
+ ║ [Response] <nada>																		║
+ ║																							║
+ ╟──────────────────────────────────────────────────────────────────────────────────────────╢
+ ║																							║
+ ║ > Atualizar um produto						POST/update-produto							║
+ ║																							║
+ ║ [Body]																					║
+ ║	"oldName"	(string)	:	Nome antigo do produto.										║
+ ║	"name"		(string)	:	Novo nome do produto.										║
+ ║	"stock"		(int)		:	Nova quantidade em stock do produto.						║
+ ║	"price"		(decimal)	:	Novo preço do produto.										║
+ ║	"allergens" (string)	:	Novos alergénios no produto.								║
+ ║	"isActive"	(bool)		:	Indica se o produto está ativo ou não.						║
+ ║																							║
+ ║ [Response] <nada>																		║
+ ║																							║
+ ╟──────────────────────────────────────────────────────────────────────────────────────────╢
+ ║																							║
+ ║ > Atualizar apenas o preço de um produto 	POST/update-produto/only-price				║
+ ║																							║
+ ║ [Body]																					║
+ ║	"name"		(string)	:	Nome do produto a atualizar.								║
+ ║	"price"		(decimal)	:	Novo preço do produto.										║
+ ║																							║
+ ║ [Response] <nada>																		║
+ ║																							║
+ ╟──────────────────────────────────────────────────────────────────────────────────────────╢
+ ║																							║
+ ║ > Atualizar apenas o stock de um produto 	POST/update-produto/only-stock				║
+ ║																							║
+ ║ [Body]																					║
+ ║	"name"		(string)	:	Nome do produto a atualizar.								║
+ ║	"stock"		(int)		:	Novo stock do produto.										║
+ ║																							║
+ ║ [Reponse] <nada>																			║
+ ║																							║
+ ╟──────────────────────────────────────────────────────────────────────────────────────────╢
+ ║																							║
+ ║ > Apagar um produto 							POST/delete-produto							║
+ ║																							║
+ ║ [Body]																					║
+ ║	"name"		(string)	:	Nome do produto a apagar.									║
+ ║																							║
+ ║ [Response] <nada>																		║
+ ║																							║
+ ╟──────────────────────────────────────────────────────────────────────────────────────────╢
+ ╠══════════════════════════════════════════════════════════════════════════════════════════╝
+ ╠╗
+╚╝╚╛
+
+
+
+
+
+-= schemaProdutos =-
+[
+	{
+		"nome"		: string,
+		"stock"		: int,
+		"price"		: decimal,
+		"allergens"	: string,
+		"isActive"	: bool,
+	},
+],
+
+
+
+-= schemaProduto =-
+{
+	"nome"			: string,
+	"stock"			: int,
+	"price"			: decimal,
+	"allergens"		: string,
+	"isActive"		: bool,
+},

@@ -58,7 +58,7 @@ apiUsers.route("/users/update-carrinho").post(function (req, res) {
 
 
 
-//  LOGIN
+// ❎ LOGIN
 apiUsers.route("/users/login").post(function (req, res) {
 	log("l", "s", "login (POST - Users)");
 	log("i", "", "Username: " + req.body.name + "\nPassword: " + req.body.password);
@@ -92,12 +92,3 @@ apiUsers.route("/users/login").post(function (req, res) {
 
 // EXPORT API
 module.exports = apiUsers;
-
-
-
-
-
-
-module.exports = {
-	checkToken: checkToken
-}

@@ -1,5 +1,5 @@
 ﻿// SCHEMA
-var schemaProdutos = require('./schemaProdutos');
+var schemaProdutos = require("./schemaProdutos");
 var functions = require("../functions");
 var log = functions.log;
 

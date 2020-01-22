@@ -2,7 +2,7 @@
 
 // SETUP
 var SchemaUsers = mongoose.Schema({
-	nome: {
+	name: {
 		type: String,
 		required: true,
 		unique: true,

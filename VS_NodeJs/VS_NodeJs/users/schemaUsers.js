@@ -20,7 +20,7 @@ var SchemaUsers = mongoose.Schema({
 			type: Number,
 		},
 	}],
-	historico: [{
+	history: [{
 		idProduto: {
 			type: Number,
 		}

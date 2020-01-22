@@ -2,7 +2,8 @@
 	log: function (t, w, msg) {
 		var pre;
 
-		if (t == "r") pre = "REQUEST";
+		if (t == "i") pre = "INFO";
+		else if (t == "r") pre = "REQUEST";
 		else if (t == "e") pre = "ERROR";
 		else if (t == "s") pre = "SENT";
 		else if (t == "c") pre = "CREATE";
@@ -12,9 +13,9 @@
 
 
 
-		if (w == "s") console.log("\n # ================================================================ #");
+		if (w == "s") console.log("\n # ================================================================ #\n" + new Date());
 
-		console.log("\n" + new Date() + "\n[" + pre + "] " + msg + "\n");
+		console.log("\n[" + pre + "] " + msg + "\n");
 
 		if (w == "e") console.log(" # ================================================================ #\n");
 	},

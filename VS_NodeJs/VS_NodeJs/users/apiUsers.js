@@ -58,7 +58,7 @@ apiUsers.route("/users/update-carrinho").post(function (req, res) {
 
 
 
-// ❎ LOGIN
+// ✅ LOGIN
 apiUsers.route("/users/login").post(function (req, res) {
 	log("l", "s", "login (POST - Users)");
 	log("i", "", "Username: " + req.body.name + "\nPassword: " + req.body.password);
@@ -73,17 +73,18 @@ apiUsers.route("/users/login").post(function (req, res) {
 			log("i", "", "Encontrado um utilizador que corresponde ao Username e Password fornecidos.");
 			var token = jwt.sign({ username: req.body.username }, "be",
 				{
-					expiresIn: '24h'
+					expiresIn: '1h'
 				}
 			);
+
 			log("l", "e", "Token criado: " + token);
+			res.status(200).send(token);
 		}
 		else {
 			log("l", "e", "Nenhum utilizador com a combinação de <name> e <password> foi encontrado.");
-			res.status(200).send(null);
+			res.status(401).send();
 		}
 	});
-	// TODO: https://medium.com/dev-bits/a-guide-for-adding-jwt-token-based-authentication-to-your-single-page-nodejs-applications-c403f7cf04f4S
 });
 
 

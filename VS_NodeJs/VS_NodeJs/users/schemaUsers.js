@@ -15,16 +15,12 @@ var SchemaUsers = mongoose.Schema({
 		type: Boolean,
 		default: false,
 	},
-	carrinho: [{
-		idProduto: {
-			type: Number,
-		},
-	}],
-	history: [{
-		idProduto: {
-			type: Number,
-		}
-	}],
+	carrinho: {
+		type: Array,
+	},
+	history: {
+		type: Array,
+	}
 });
 
 // EXPORT

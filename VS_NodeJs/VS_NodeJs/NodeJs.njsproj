@@ -36,10 +36,22 @@
     <Compile Include="carrinhos\schemaCarrinhos.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="tutorial\config.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tutorial\middleware.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="produtos\apiProdutos.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="produtos\schemaProdutos.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="token\createToken.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tutorial\server.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="users\apiUsers.js">
@@ -55,6 +67,8 @@
     <Content Include="package.json" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="tutorial\" />
+    <Folder Include="token\" />
     <Folder Include="produtos\" />
     <Folder Include="users\" />
     <Folder Include="carrinhos\" />

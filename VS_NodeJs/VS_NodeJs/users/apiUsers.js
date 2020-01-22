@@ -1,7 +1,8 @@
 ﻿// SCHEMA
-var schemaUtilizadores = require('./schemaUsers');
+var schemaUsers = require('./schemaUsers');
 var functions = require("../functions");
 var log = functions.log;
+let jwt = require('jsonwebtoken');
 
 // ROUTES
 let apiUsers = require("express").Router();
@@ -16,9 +17,9 @@ let apiUsers = require("express").Router();
 
 // ✅ GET USER BY NAME
 apiUsers.route("/users/get-user/by-name").post(function (req, res) {
-	log("r", "s", "getByName (GET - Users)")
+	log("r", "s", "getByName (POST - Users)")
 
-	schemaUtilizadores.findOne({ name: req.body.name }, function (error, produto) {
+	schemaUsers.findOne({ name: req.body.name }, function (error, produto) {
 		if (error) {
 			log("e", "e", error);
 			res.status(404).json(error).send();
@@ -31,31 +32,25 @@ apiUsers.route("/users/get-user/by-name").post(function (req, res) {
 
 
 
-
-// ❎ UPDATE CARRINHO
-apiUsers.route("/users/update-produto").patch(function (req, res) {
+// ✅ UPDATE CARRINHO
+apiUsers.route("/users/update-carrinho").post(function (req, res) {
 	log("r", "s", "updateProduto (POST - Users)");
 
-	schemaUtilizadores.findOne({ name: req.body.oldName }, function (error, produto) {
+	schemaUsers.findOne({ name: req.body.name }, function (error, user) {
 		if (error) {
 			log("e", "e", error);
 			res.status(500).json(error).send();
 		}
 
-		var pre = produto;
-		produto.name = req.body.name;
-		produto.stock = req.body.stock;
-		produto.price = req.body.price;
-		produto.allergens = req.body.allergens;
-		produto.isActive = req.body.isActive;
+		user.carrinho = req.body.carrinho;
 
-		produto.save(function (error) {
+		user.save(function (error) {
 			if (error) {
 				log("e", "e", error);
 				res.status(500).json(error).send();
 			}
 
-			log("u", "e", "Produto: " + req.body.oldName + "\nNome: " + req.body.name + " (" + req.body.oldName + ")\nStock: " + req.body.stock + " (" + pre.stock + ")\nPrice: " + req.body.price + " (" + pre.price + ")\nAllergens: " + req.body.allergens + " (" + pre.allergens + ")\nIs Active: " + req.body.isActive + " (" + pre.isActive + ")");
+			log("u", "e", "Carrinho: " + req.body.carrinho);
 			res.status(204).send();
 		})
 	});
@@ -63,10 +58,31 @@ apiUsers.route("/users/update-produto").patch(function (req, res) {
 
 
 
-// ❎ LOGIN
+//  LOGIN
 apiUsers.route("/users/login").post(function (req, res) {
 	log("l", "s", "login (POST - Users)");
+	log("i", "", "Username: " + req.body.name + "\nPassword: " + req.body.password);
 
+	schemaUsers.findOne({ name: req.body.name, password: req.body.password }, function (error, user) {
+		if (error) {
+			log("e", "e", error);
+			res.status(500).json(error).send();
+		}
+
+		if (user) {
+			log("i", "", "Encontrado um utilizador que corresponde ao Username e Password fornecidos.");
+			var token = jwt.sign({ username: req.body.username }, "be",
+				{
+					expiresIn: '24h'
+				}
+			);
+			log("l", "e", "Token criado: " + token);
+		}
+		else {
+			log("l", "e", "Nenhum utilizador com a combinação de <name> e <password> foi encontrado.");
+			res.status(200).send(null);
+		}
+	});
 	// TODO: https://medium.com/dev-bits/a-guide-for-adding-jwt-token-based-authentication-to-your-single-page-nodejs-applications-c403f7cf04f4S
 });
 
@@ -76,3 +92,12 @@ apiUsers.route("/users/login").post(function (req, res) {
 
 // EXPORT API
 module.exports = apiUsers;
+
+
+
+
+
+
+module.exports = {
+	checkToken: checkToken
+}

@@ -2,12 +2,6 @@
 
 // SETUP
 var SchemaCarrinhos = mongoose.Schema({
-	_id: {
-		type: Number,
-		required: true,
-		unique: true,
-		alias: 'id',
-	},
 	utilizador: {
 		type: String,
 		unique: true,

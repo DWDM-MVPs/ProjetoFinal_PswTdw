@@ -29,5 +29,5 @@ mongoose.connect("mongodb://localhost:27017/barEscolar", { useNewUrlParser: true
 
 
 // ROUTES
-var routesProdutos = require("./produtos/apiProdutos");
-app.use("/api/", routesProdutos);
+var apiProdutos = require("./produtos/apiProdutos");
+app.use("/api/", apiProdutos);

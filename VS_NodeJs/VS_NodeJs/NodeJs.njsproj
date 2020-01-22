@@ -39,9 +39,6 @@
     <Compile Include="produtos\apiProdutos.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="produtos\routesProdutos.js">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="produtos\schemaProdutos.js">
       <SubType>Code</SubType>
     </Compile>

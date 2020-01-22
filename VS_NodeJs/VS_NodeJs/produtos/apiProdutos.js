@@ -131,7 +131,7 @@ apiProdutos.route("/produtos/update-produto/only-price").post(function (req, res
 
 
 
-// ❎ UPDATE STOCK PRODUTO
+// ✅ UPDATE STOCK PRODUTO
 apiProdutos.route("/produtos/update-produto/only-stock").post(function (req, res) {
 	log("r", "s", "updateStockProduto (POST - Produtos)");
 

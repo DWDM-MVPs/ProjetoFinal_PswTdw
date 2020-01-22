@@ -2,11 +2,10 @@
 
 // SETUP
 var SchemaUtilizadores = mongoose.Schema({
-	_id: {
+	nome: {
 		type: String,
 		required: true,
 		unique: true,
-		alias: 'nome',
 	},
 	password: {
 		type: String,

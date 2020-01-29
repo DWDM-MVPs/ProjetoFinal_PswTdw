@@ -3,7 +3,9 @@ class Dashboard extends Component {
     render() {
       return (
         <div className="Component">
-            xd
+        <button>Adicionar Produto</button>
+        <button>Remover Produto</button>
+        <button>Editar Produto</button>
         </div>
       );
     }

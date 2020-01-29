@@ -83,7 +83,7 @@ apiProdutos.route("/produtos/update-produto").post(function (req, res) {
 			log("e", "e", error);
 			res.status(500).json(error).send();
 		}
-		
+
 		produto.name = req.body.name;
 		produto.stock = req.body.stock;
 		produto.price = req.body.price;
@@ -96,7 +96,7 @@ apiProdutos.route("/produtos/update-produto").post(function (req, res) {
 				res.status(500).json(error).send();
 			}
 
-			log("u", "e", "Produto: " + req.body.oldName + "\nNome: " + req.body.name  + "\nStock: " + req.body.stock + "\nPrice: " + req.body.price + "\nAllergens: " + req.body.allergens + "\nIs Active: " + req.body.isActive);
+			log("u", "e", "Produto: " + req.body.oldName + "\nNome: " + req.body.name + "\nStock: " + req.body.stock + "\nPrice: " + req.body.price + "\nAllergens: " + req.body.allergens + "\nIs Active: " + req.body.isActive);
 			res.status(204).send();
 		})
 	});

@@ -19,7 +19,6 @@ app.get("/api", (req, res) => {
 })
 
 
-
 // MONGOOSE & MONGO DB
 mongoose.connect("mongodb://localhost:27017/barEscolar", { useNewUrlParser: true });
 

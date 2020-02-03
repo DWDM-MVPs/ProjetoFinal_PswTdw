@@ -14,10 +14,6 @@ export class Produtos extends Component {
 	componentDidMount() {
 		const res = fetch('http://localhost:1337/api/produtos/get-produtos', {
 			method: 'post',
-			headers: { 'Content-Type': 'application/json' },
-			body: {
-				id: 0,
-			},
 		})
 			.then((response) => response.json())
 			.then((responseJson) => {

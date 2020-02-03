@@ -6,49 +6,50 @@ import '../css/NavMenu.css';
 import NavbarCollapse from 'react-bootstrap/lib/NavbarCollapse';
 
 export class NavMenu extends Component {
-  displayName = NavMenu.name
+	displayName = NavMenu.name
 
-  render() {
-    function myFunction() {
-      var x = document.getElementById("dashboard");
-      x=NavbarCollapse
-    }
-    return (
+	render() {
+		var dashboard;
+		if (true) {
+			dashboard = (
+				<LinkContainer to={'/dashboard'}>
+				<NavItem>
+					<Glyphicon glyph='list-alt' /> Dashboard
+								</NavItem>
+			</LinkContainer>);
+		}
 
-      <Navbar inverse fixedTop fluid collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <Link to={'/'}>Bar Escolar</Link>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav>
-            <LinkContainer to={'/'} exact>
-              <NavItem>
-                <Glyphicon glyph='apple'  /> Produtos
-              </NavItem>
-            </LinkContainer>
+		return (
+			<Navbar inverse fixedTop fluid collapseOnSelect>
+				<Navbar.Header>
+					<Navbar.Brand>
+						<Link to={'/'}>Bar Escolar</Link>
+					</Navbar.Brand>
+					<Navbar.Toggle />
+				</Navbar.Header>
+				<Navbar.Collapse>
+					<Nav>
+						<LinkContainer to={'/'} exact>
+							<NavItem>
+								<Glyphicon glyph='apple' /> Produtos
+							 </NavItem>
+						</LinkContainer>
 
-            <LinkContainer to={'/carrinho'} >
-              <NavItem>
-                <Glyphicon glyph='shopping-cart' /> Carrinho
-              </NavItem>
-            </LinkContainer>
+						<LinkContainer to={'/carrinho'}>
+							<NavItem>
+								<Glyphicon glyph='shopping-cart' /> Carrinho
+							  </NavItem>
+						</LinkContainer>
 
-            <LinkContainer to={'/login'}>
-              <NavItem>
-                <Glyphicon glyph='log-in' /> Login
-              </NavItem>
-            </LinkContainer>
-            <LinkContainer to={'/dashboard'} id="dashboard">
-              <NavItem>
-                <Glyphicon glyph='list-alt' /> Dashboard
-              </NavItem>
-            </LinkContainer>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
-    );
-  }
+						<LinkContainer to={'/login'}>
+							<NavItem>
+								<Glyphicon glyph='log-in' /> Login
+							</NavItem>
+						</LinkContainer>
+						{dashboard}
+					</Nav>
+				</Navbar.Collapse>
+			</Navbar>
+		);
+	}
 }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import NavMenu from '../components/NavMenu';
 
 export class Produtos extends Component {
 	displayName = Produtos.name
@@ -12,7 +13,7 @@ export class Produtos extends Component {
 	}
 
 	componentDidMount() {
-		const res = fetch('http://localhost:1337/api/produtos/get-produtos', {
+		const res = fetch('http://192.168.242.200:1337/api/produtos/get-produtos', {
 			method: 'post',
 		})
 			.then((response) => response.json())

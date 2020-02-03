@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom';
 import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import '../css/NavMenu.css';
+import NavbarCollapse from 'react-bootstrap/lib/NavbarCollapse';
 
 export class NavMenu extends Component {
   displayName = NavMenu.name
 
   render() {
+    function myFunction() {
+      var x = document.getElementById("dashboard");
+      x=NavbarCollapse
+    }
     return (
+
       <Navbar inverse fixedTop fluid collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
@@ -20,20 +26,22 @@ export class NavMenu extends Component {
           <Nav>
             <LinkContainer to={'/'} exact>
               <NavItem>
-                <Glyphicon glyph='apple' /> Produtos
+                <Glyphicon glyph='apple'  /> Produtos
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/carrinho'}>
+
+            <LinkContainer to={'/carrinho'} >
               <NavItem>
                 <Glyphicon glyph='shopping-cart' /> Carrinho
               </NavItem>
             </LinkContainer>
+
             <LinkContainer to={'/login'}>
               <NavItem>
                 <Glyphicon glyph='log-in' /> Login
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/dashboard'}>
+            <LinkContainer to={'/dashboard'} id="dashboard">
               <NavItem>
                 <Glyphicon glyph='list-alt' /> Dashboard
               </NavItem>

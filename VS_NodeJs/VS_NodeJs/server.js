@@ -13,21 +13,15 @@ app.use(express.static(staticPath));
 app.use(bodyParser.json());
 
 var server = app.listen(app.get("port"), function () {
-	console.log("Bar Escolar API started.");
+				console.log("Bar Escolar API started.");
 });
 
 app.get("/api", (req, res) => {
-	res.send("API do Bar Escolar online!");
+				res.send("API do Bar Escolar online!");
 })
-
 
 // MONGOOSE & MONGO DB
 mongoose.connect("mongodb://localhost:27017/barEscolar", { useNewUrlParser: true });
-
-
-
-
-
 
 // ROUTES
 var apiProdutos = require("./produtos/apiProdutos");

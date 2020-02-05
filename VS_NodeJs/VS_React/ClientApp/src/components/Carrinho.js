@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 class Dashboard extends Component {
-    render() {
-      return (
-        <div className="Component">
-            xd
+				render() {
+								return (
+												<div className="Component">
+																xd
         </div>
-      );
-    }
-  }
-  
-  export default Dashboard;
+								);
+				}
+}
+
+export default Dashboard;

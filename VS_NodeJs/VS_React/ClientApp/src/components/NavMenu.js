@@ -4,7 +4,7 @@ import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import '../css/NavMenu.css';
 export class NavMenu extends Component {
-				displayName = NavMenu.name
+	displayName = NavMenu.name
 
 	render() {
 		return (
@@ -21,17 +21,17 @@ export class NavMenu extends Component {
 							<NavItem>
 								<Glyphicon glyph='apple' /> Produtos
 							 </NavItem>
-																								</LinkContainer>
+						</LinkContainer>
 
-																								<LinkContainer to={'/carrinho'}>
-																												<NavItem>
-																																<Glyphicon glyph='shopping-cart' /> Carrinho
+						<LinkContainer to={'/carrinho'}>
+							<NavItem>
+								<Glyphicon glyph='shopping-cart' /> Carrinho
 							  </NavItem>
-																								</LinkContainer>
+						</LinkContainer>
 
-																								<LinkContainer to={'/login'}>
-																												<NavItem>
-																																<Glyphicon glyph='log-in' /> Login
+						<LinkContainer to={'/login'}>
+							<NavItem>
+								<Glyphicon glyph='log-in' /> Login
 							</NavItem>
 						</LinkContainer>
 						<LinkContainer to={'/dashboard'}>
@@ -41,7 +41,7 @@ export class NavMenu extends Component {
 						</LinkContainer>);}
 					</Nav>
 				</Navbar.Collapse>
-				<Nav>			
+				<Nav>
 				</Nav>
 			</Navbar>
 

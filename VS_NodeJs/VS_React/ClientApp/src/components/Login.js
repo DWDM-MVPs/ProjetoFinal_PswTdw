@@ -39,42 +39,47 @@ class Login extends Component {
 								return this.setState({ alert: 'Successful login' });
 				}
 
-				handleUserChange(evt) {
-								this.setState({
-												usernumb: evt.target.value,
-								});
-				};
+	handleUserChange(evt) {
+		this.setState({
+			usernumb: evt.target.value,
+		});
+	};
 
-				handlePassChange(evt) {
-								this.setState({
-												password: evt.target.value,
-								});
-				}
+	handlePassChange(evt) {
+		this.setState({
+			password: evt.target.value,
+		});
+	};  
 
-				render() {
-								return (
-												<div className="Login">
-																<form onSubmit={this.handleSubmit}>
-																				{
-																								this.state.error &&
-																								<h3 data-test="error" onClick={this.dismissError}>
-																												<button onClick={this.dismissError}>✖</button>
-																												{this.state.error}
-																								</h3>
-																				}
-																				<div id="cenas">
-																								<br />
-																								<input type="text" placeholder="Username" data-test="usernumb" value={this.state.usernumb} onChange={this.handleUserChange} />
-																								<br />
-																								<br />
-																								<input type="password" placeholder="Password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
-																								<br />
-																								<input type="submit" value="Log In" data-test="submit" id="subm" />
-																				</div>
-																</form>
-												</div>
-								);
-				}
+
+	
+	render() {
+
+		return (
+			<div className="Login">
+				<form onSubmit={this.handleSubmit}>
+					{
+						this.state.error &&
+						<h3 data-test="error" onClick={this.dismissError}>
+							<button onClick={this.dismissError}>✖</button>
+							{this.state.error}
+						</h3>
+					}
+					<div id="cenas">
+						<br />
+						<input type="text" placeholder="Username" data-test="usernumb" value={this.state.usernumb} onChange={this.handleUserChange} />
+						<br />
+						<br />
+						<input type="password" placeholder="Password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
+						<br />
+						<input type="submit" value="Log In" data-test="submit" id="subm" />
+						
+					</div>
+					<button >XD</button>
+				</form>
+			</div>
+		);
+	}
 }
 
 export default Login;

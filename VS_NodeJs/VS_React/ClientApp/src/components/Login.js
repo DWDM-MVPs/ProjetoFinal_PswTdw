@@ -2,44 +2,42 @@ import React, { Component } from 'react';
 import '../css/Login.css';
 
 class Login extends Component {
-	constructor() {
-		super();
-		this.state = {
-			usernumb: '',
-			password: '',
-			error: '',
-		};
+				constructor() {
+								super();
+								this.state = {
+												usernumb: '',
+												password: '',
+												error: '',
+								};
 
-		this.handlePassChange = this.handlePassChange.bind(this);
-		this.handleUserChange = this.handleUserChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.dismissError = this.dismissError.bind(this);
-	}
+								this.handlePassChange = this.handlePassChange.bind(this);
+								this.handleUserChange = this.handleUserChange.bind(this);
+								this.handleSubmit = this.handleSubmit.bind(this);
+								this.dismissError = this.dismissError.bind(this);
+				}
 
-	dismissError() {
-		this.setState({ error: '' });
-	}
+				dismissError() {
+								this.setState({ error: '' });
+				}
 
-	handleSubmit(evt) {
-		evt.preventDefault();
+				handleSubmit(evt) {
+								evt.preventDefault();
 
-		var user = this.state.usernumb;
-		var pass = this.state.password;
+								var user = this.state.usernumb;
+								var pass = this.state.password;
 
-		if (!this.state.usernumb) {
-			return this.setState({ error: 'User Number is required' });
-		}
+								if (!this.state.usernumb) {
+												return this.setState({ error: 'User Number is required' });
+								}
 
-		if (!this.state.password) {
-			return this.setState({ error: 'Password is required' });
-		}
-		if (user === "admin" && pass === "admin") {
-			return alert("You are an admin")
-		}
-		return this.setState({ alert: 'Successful login' });
-
-	}
-
+								if (!this.state.password) {
+												return this.setState({ error: 'Password is required' });
+								}
+								if (user === "admin" && pass === "admin") {
+												return alert("You are an admin")
+								}
+								return this.setState({ alert: 'Successful login' });
+				}
 
 	handleUserChange(evt) {
 		this.setState({

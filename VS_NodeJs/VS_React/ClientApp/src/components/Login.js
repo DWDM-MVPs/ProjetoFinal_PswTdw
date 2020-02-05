@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../css/Login.css';
 
-
 class Login extends Component {
 	constructor() {
 		super();
@@ -41,6 +40,7 @@ class Login extends Component {
 
 	}
 
+
 	handleUserChange(evt) {
 		this.setState({
 			usernumb: evt.target.value,
@@ -51,11 +51,9 @@ class Login extends Component {
 		this.setState({
 			password: evt.target.value,
 		});
-	}
+	};  
 
 	render() {
-		// NOTE: I use data-attributes for easier E2E testing
-		// but you don't need to target those (any css-selector will work)
 
 		return (
 			<div className="Login">
@@ -75,7 +73,9 @@ class Login extends Component {
 						<input type="password" placeholder="Password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
 						<br />
 						<input type="submit" value="Log In" data-test="submit" id="subm" />
+						
 					</div>
+					<button >XD</button>
 				</form>
 			</div>
 		);

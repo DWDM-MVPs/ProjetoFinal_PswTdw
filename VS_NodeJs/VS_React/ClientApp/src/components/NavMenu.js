@@ -3,22 +3,10 @@ import { Link } from 'react-router-dom';
 import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import '../css/NavMenu.css';
-import NavbarCollapse from 'react-bootstrap/lib/NavbarCollapse';
-
 export class NavMenu extends Component {
 	displayName = NavMenu.name
 
 	render() {
-		var dashboard;
-		if (true) {
-			dashboard = (
-				<LinkContainer to={'/dashboard'}>
-				<NavItem>
-					<Glyphicon glyph='list-alt' /> Dashboard
-								</NavItem>
-			</LinkContainer>);
-		}
-
 		return (
 			<Navbar inverse fixedTop fluid collapseOnSelect>
 				<Navbar.Header>
@@ -46,10 +34,17 @@ export class NavMenu extends Component {
 								<Glyphicon glyph='log-in' /> Login
 							</NavItem>
 						</LinkContainer>
-						{dashboard}
+						<LinkContainer to={'/dashboard'}>
+							<NavItem>
+								<Glyphicon glyph='list-alt' /> Dashboard
+							</NavItem>
+						</LinkContainer>);}
 					</Nav>
 				</Navbar.Collapse>
+				<Nav>			
+				</Nav>
 			</Navbar>
+
 		);
 	}
 }

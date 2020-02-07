@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+
 class Dashboard extends Component {
   constructor() {
     super();
@@ -95,12 +97,15 @@ class Dashboard extends Component {
           </form>
           <button onClick={() => alert(this.state.textName)}>testar</button>
         </div>
-        <button id="AddPro" onClick={this.adicionarProduto}>Adicionar Produto</button>
-        <button id="RemPro" onClick={this.removerProduto}>Remover Produto</button>
-        <button id="EdPro" onClick={this.editarProduto}>Editar Produto</button>
-      </div>
+     </div>
     );
   }
 }
 
 export default Dashboard;
+
+/*
+<button id="AddPro" onClick={this.adicionarProduto}>Adicionar Produto</button>
+<button id="RemPro" onClick={this.removerProduto}>Remover Produto</button>
+<button id="EdPro" onClick={this.editarProduto}>Editar Produto</button>
+*/

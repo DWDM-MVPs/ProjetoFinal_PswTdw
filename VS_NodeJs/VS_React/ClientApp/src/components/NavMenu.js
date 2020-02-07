@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import '../css/NavMenu.css';
+
 export class NavMenu extends Component {
 	displayName = NavMenu.name
 
@@ -11,7 +12,7 @@ export class NavMenu extends Component {
 			<Navbar inverse fixedTop fluid collapseOnSelect>
 				<Navbar.Header>
 					<Navbar.Brand>
-						<Link to={'/'}>Bar Escolar</Link>
+						<Link to={'/login'}>Bar Escolar</Link>
 					</Navbar.Brand>
 					<Navbar.Toggle />
 				</Navbar.Header>
@@ -29,16 +30,23 @@ export class NavMenu extends Component {
 							  </NavItem>
 						</LinkContainer>
 
-						<LinkContainer to={'/login'}>
-							<NavItem>
-								<Glyphicon glyph='log-in' /> Login
-							</NavItem>
-						</LinkContainer>
 						<LinkContainer to={'/dashboard'}>
 							<NavItem>
 								<Glyphicon glyph='list-alt' /> Dashboard
 							</NavItem>
-						</LinkContainer>);}
+						</LinkContainer>
+						
+						<LinkContainer to={'/editarProduto'} exact>
+							<NavItem>
+								<Glyphicon glyph='list-alt' /> Editar Produto
+							</NavItem>
+						</LinkContainer>
+
+						<LinkContainer to={'/adicionarProduto'} exact>
+							<NavItem>
+								<Glyphicon glyph='list-alt' /> Adicionar Produto
+							</NavItem>
+						</LinkContainer>
 					</Nav>
 				</Navbar.Collapse>
 				<Nav>

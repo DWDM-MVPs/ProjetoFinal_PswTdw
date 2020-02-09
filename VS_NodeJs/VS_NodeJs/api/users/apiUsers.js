@@ -1,6 +1,6 @@
 ﻿// SCHEMA
 var schemaUsers = require('./schemaUsers');
-var functions = require("../functions");
+var functions = require("../../functions");
 var log = functions.log;
 let jwt = require('jsonwebtoken');
 

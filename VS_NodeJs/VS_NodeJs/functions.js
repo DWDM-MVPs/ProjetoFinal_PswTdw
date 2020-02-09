@@ -1,5 +1,6 @@
 ﻿module.exports = {
-				log: function (t, w, msg) {
+				log: function (t, w, msg)
+				{
 								var pre;
 
 								if (t == "i") pre = "INFO";

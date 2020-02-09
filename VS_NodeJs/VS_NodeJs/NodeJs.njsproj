@@ -30,27 +30,44 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="produtos\apiProdutos.js">
+    <Compile Include="auth\auth.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="produtos\schemaProdutos.js">
+    <Compile Include="auth\index.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="users\apiUsers.js">
+    <Compile Include="auth\validateRequest.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="users\schemaUsers.js">
+    <Compile Include="tokenKey.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="api\produtos\apiProdutos.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="api\produtos\schemaProdutos.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="api\users\apiUsers.js">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="api\users\schemaUsers.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="server.js" />
     <Compile Include="functions.js">
       <SubType>Code</SubType>
     </Compile>
+    <Content Include="auth\tokenApi.js">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="package.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="produtos\" />
-    <Folder Include="users\" />
+    <Folder Include="api\" />
+    <Folder Include="api\produtos\" />
+    <Folder Include="api\users\" />
+    <Folder Include="auth\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

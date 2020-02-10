@@ -6,9 +6,10 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var cors = require("cors");
 var app = express();
+var config = require("./config");
 
 app.use(cors());
-app.set("port", process.env.PORT || 1337);
+app.set("port", config.serverPort);
 app.use(express.static(staticPath));
 app.use(bodyParser.json());
 

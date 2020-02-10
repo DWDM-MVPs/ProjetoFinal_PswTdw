@@ -1,10 +1,12 @@
 ﻿// SCHEMA
-var schemaProdutos = require("./schemaProdutos");
-var functions = require("../functions");
-var log = functions.log;
+var schemaProdutos = require('./schemaProdutos');
 
 // ROUTES
 let apiProdutos = require("express").Router();
+
+// CONSOLE LOG
+var functions = require("../../functions");
+var log = functions.log;
 
 
 

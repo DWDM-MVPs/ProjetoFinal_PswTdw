@@ -9,7 +9,7 @@ module.exports = function (req, res, next)
 				{
 								try
 								{
-												var decoded = jwt.decode(token, require("./secret.js")());
+												var decoded = jwt.decode(token, require("../auth/secret.js")());
 
 												if (decoded.exp &= Date.now())
 												{

@@ -5,8 +5,8 @@ var schemaUsers = require('./schemaUsers');
 let apiUsers = require("express").Router();
 
 // CONSOLE LOG
-var functions = require("../../functions");
-var log = functions.log;
+var log = require("../../functions").log;
+var validateToken = require("../../functions").validateToken;
 
 // TOKENS
 let jwt = require('jsonwebtoken');
@@ -22,7 +22,7 @@ var config = require("../../config");
 
 
 
-// ✅ GET USER BY NAME
+// ✅ GET USER BY TOKEN
 apiUsers.route("/users/get-user/by-name").post(function (req, res)
 {
 				log("r", "s", "getByName (POST - Users)")
@@ -42,10 +42,10 @@ apiUsers.route("/users/get-user/by-name").post(function (req, res)
 
 
 
-// ✅ UPDATE CARRINHO
-apiUsers.route("/users/update-carrinho").post(function (req, res)
+// ✅ ADD PRODUTO TO CARRINHO
+apiUsers.route("/users/update-carrinho/add-produto").post(function (req, res)
 {
-				log("r", "s", "updateProduto (POST - Users)");
+				log("r", "s", "updateProduto/addProduto (POST - Users)");
 
 				schemaUsers.findOne({ name: req.body.name }, function (error, user)
 				{
@@ -55,7 +55,9 @@ apiUsers.route("/users/update-carrinho").post(function (req, res)
 												res.status(500).json(error).send();
 								}
 
-								user.carrinho = req.body.carrinho;
+								var carrinho = JSON.parse(user.carrinho);
+								carrinho.items.push(req.body.produto);
+								user.carrinho = JSON.stringify(carrinho);
 
 								user.save(function (error)
 								{
@@ -70,6 +72,18 @@ apiUsers.route("/users/update-carrinho").post(function (req, res)
 								});
 				});
 });
+
+
+
+apiUsers.route("/users/update-carrinho/remove-produto").post(function (req, res)
+{
+				log("r", "s", "updateProduto/removeProduto (POST - Users)");
+
+				schemaUsers.findOne({ name: req.body.name }, function (error, user)
+				{
+
+				})
+})
 
 
 
@@ -90,11 +104,13 @@ apiUsers.route("/users/login").post(function (req, res)
 								if (user)
 								{
 												log("i", "", "Encontrado um utilizador que corresponde ao Username e Password fornecidos.");
-												var token = jwt.sign({ username: req.body.username }, "milkenm@purediamond.tk",
-																{
-																				expiresIn: '1h'
-																}
-												);
+
+
+												var payload = { name: req.body.name };
+												var options = { expiresIn: "1h", };
+												var secret = config.tokenSecret;
+
+												var token = jwt.sign(payload, secret, options);
 
 												log("l", "e", "Token criado: " + token);
 												res.status(200).send(token);
@@ -107,48 +123,45 @@ apiUsers.route("/users/login").post(function (req, res)
 				});
 });
 
-
+apiUsers.route("/test/:token").post(function (req, res)
+{
+				validateToken(req.params.token, function (err, result)
+				{
+								console.log(result);
+				});
+})
 
 // ✅ CLOSE CARRINHO
-apiUsers.route("/users/close-carrinho/:token").post(function (req, res)
+apiUsers.route("/users/close-carrinho").post(function (req, res)
 {
 				log("r", "s", "Fechar carrinho: " + req.body.name);
 
 				schemaUsers.findOne({ name: req.body.name }, function (error, user)
 				{
-								jwt.verify(req.params.token, "milkenm@purediamond.tk", (error, decoded) =>
+								var carrinho = user.carrinho;
+
+								for (var i = 0; i < carrinho.length; i++)
+								{
+												var obj = carrinho[i];
+												console.log(carrinho.name);
+								}
+
+								var obj = JSON.parse(user.historico);
+								obj['historico'].push(user.carrinho);
+								jsonStr = JSON.stringify(obj);
+								user.historico = jsonStr;
+								user.carrinho = null;
+
+								user.save(function (error)
 								{
 												if (error)
 												{
-																log("i", "e", "Token inválido: " + req.params.token + "\n" + error);
-																res.status(401).send(null);
+																log("e", "e", error);
+																res.status(500).json(error).send();
 												}
 
-												var carrinho = user.carrinho;
-
-												for (var i = 0; i < carrinho.length; i++)
-												{
-																var obj = carrinho[i];
-																console.log(carrinho.name);
-												}
-
-												var obj = JSON.parse(user.historico);
-												obj['historico'].push(user.carrinho);
-												jsonStr = JSON.stringify(obj);
-												user.historico = jsonStr;
-												user.carrinho = null;
-
-												user.save(function (error)
-												{
-																if (error)
-																{
-																				log("e", "e", error);
-																				res.status(500).json(error).send();
-																}
-
-																log("u", "e", "Histórico: " + user.historico);
-																res.status(204).send();
-												});
+												log("u", "e", "Histórico: " + user.historico);
+												res.status(204).send();
 								});
 				});
 });

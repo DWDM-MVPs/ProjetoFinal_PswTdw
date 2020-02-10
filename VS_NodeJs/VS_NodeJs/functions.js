@@ -1,4 +1,13 @@
-﻿module.exports = {
+﻿// TOKENS
+let jwt = require('jsonwebtoken');
+
+// CONFIG
+var config = require("./config");
+
+
+
+
+module.exports = {
 				log: function (t, w, msg)
 				{
 								var pre;
@@ -16,6 +25,24 @@
 
 								console.log("\n[" + pre + "] " + msg);
 
-								if (w == "e") console.log("\n # ================================================================ #\n\n\n");
+								if (w == "e") console.log("\n # ================================================================ #\n\n\n\n\n\n\n");
+				},
+				validateToken: function (token, callback)
+				{
+								try
+								{
+												jwt.verify(token, config.tokenSecret, function (err, decoded)
+												{
+																if (err)
+																{
+																				return false;
+																}
+																callback(err, decoded.name);
+												});
+								}
+								catch
+								{
+												return false;
+								}
 				},
 };

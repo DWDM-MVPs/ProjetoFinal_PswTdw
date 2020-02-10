@@ -3,7 +3,7 @@ const ProdList = [
 		name: 'Teste',
 		price: 3 + '€',
 		stock: 3,
-        allergens: 'Money',
+        allergens: 'Gluten',
         isActive: true,
 	},
 ]

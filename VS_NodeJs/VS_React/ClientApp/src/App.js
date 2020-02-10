@@ -5,8 +5,8 @@ import Login from "./components/Login";
 import Carrinho from "./components/Carrinho";
 import Dashboard from "./components/Dashboard";
 import Produtos from "./components/Produtos";
-import AdicionarProduto from "./components/AdicionarProduto";
-import EditarProduto from "./components/EditarProduto";
+import AdicionarProduto from "./components/adicionarProduto";
+import EditarProduto from "./components/editarProduto";
 
 export default class App extends Component
 {

@@ -1,54 +1,34 @@
 import React, { Component } from "react";
+import ProdList from '../components/ProdList'
 
-export class Produtos extends Component
-{
-				displayName = Produtos.name
+export class Produtos extends Component {
+	displayName = Produtos.name
 
-				constructor(props)
-				{
-								super(props);
-								this.state = {
-												produtos: [],
-												loading: true
-								};
-				}
+	constructor(props) {
+		super(props);
+		this.state = {
+			ProdList: [] ,
+		};
+	}
 
 
-				static renderTableProdutos(produtos)
-				{
-								return (
-												<table className="table">
-																<thead>
-																				<tr>
-																								<th>Nome</th>
-																								<th>Preço</th>
-																								<th>Alergénios</th>
-																				</tr>
-																</thead>
-																<tbody>
-																				{this.state.produtos.map(produtos =>
-																								<tr key={produtos.name}>
-																												<td>{produtos.price}</td>
-																												<td>{produtos.allergens}</td>
-																								</tr>
-																				)}
-																</tbody>
-												</table>
-								);
-				}
+	render() {
 
-				render()
-				{
-								let contents = this.state.loading
-												? <p><em>Loading...</em></p>
-												: Produtos.renderTableProdutos(this.state.produtos);
-
-								return (
-												<div>
-																<h1>Produtos</h1>
-																{contents}
-												</div>
-								);
-				}
+		return (
+			<div>
+				<h1>Produtos</h1>
+				<ProdInfo name="Teste" price="3" />
+							{
+								Object.keys(this.state.ProdList).map((name, e) => {
+									if (this.state.ProdList.includes(e)) {
+										return (<ProdInfo name={Prod.name} price={Prod.price} />)
+									}
+									else return null;
+								}
+								)        
+							}
+			</div>
+		);
+	}
 }
-export default Produtos;
+export default Produtos;  

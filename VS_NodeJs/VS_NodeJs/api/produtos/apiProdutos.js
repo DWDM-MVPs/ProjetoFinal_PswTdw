@@ -17,11 +17,14 @@ var log = functions.log;
 
 
 // ✅ GET ALL PRODUTOS
-apiProdutos.route("/produtos/get-produtos").post(function (req, res) {
+apiProdutos.route("/produtos/get-produtos").post(function (req, res)
+{
 				log("r", "s", "getAll (POST - Produtos)");
 
-				schemaProdutos.get(function (error, produtos) {
-								if (error) {
+				schemaProdutos.get(function (error, produtos)
+				{
+								if (error)
+								{
 												log("e", error);
 												res.status(404).send(error);
 								}
@@ -34,12 +37,15 @@ apiProdutos.route("/produtos/get-produtos").post(function (req, res) {
 
 
 // ✅ GET PRODUTO BY NAME
-apiProdutos.route("/produtos/get-produto").post(function (req, res) {
+apiProdutos.route("/produtos/get-produto").post(function (req, res)
+{
 				log("r", "s", "getByName (POST - Produtos)")
 				log("i", "", "Received data: " + req.body.name);
 
-				schemaProdutos.findOne({ name: req.body.name }, function (error, produto) {
-								if (error) {
+				schemaProdutos.findOne({ name: req.body.name }, function (error, produto)
+				{
+								if (error)
+								{
 												log("e", "e", error);
 												res.status(404).json(error).send();
 								}
@@ -52,7 +58,8 @@ apiProdutos.route("/produtos/get-produto").post(function (req, res) {
 
 
 // ✅ ADD PRODUTO
-apiProdutos.route("/produtos/add-produto").post(function (req, res) {
+apiProdutos.route("/produtos/add-produto").post(function (req, res)
+{
 				log("r", "s", "addProduto (POST - Produtos)");
 
 				var novoProduto = new schemaProdutos({
@@ -63,8 +70,10 @@ apiProdutos.route("/produtos/add-produto").post(function (req, res) {
 								isActive: req.body.isActive,
 				});
 
-				novoProduto.save(function (error) {
-								if (error) {
+				novoProduto.save(function (error)
+				{
+								if (error)
+								{
 												log("e", "e", error);
 												res.status(500).json(error).send();
 								}
@@ -77,11 +86,14 @@ apiProdutos.route("/produtos/add-produto").post(function (req, res) {
 
 
 // ✅ UPDATE PRODUTO
-apiProdutos.route("/produtos/update-produto").post(function (req, res) {
+apiProdutos.route("/produtos/update-produto").post(function (req, res)
+{
 				log("r", "s", "updateProduto (POST - Produtos)");
 
-				schemaProdutos.findOne({ name: req.body.oldName }, function (error, produto) {
-								if (error) {
+				schemaProdutos.findOne({ name: req.body.oldName }, function (error, produto)
+				{
+								if (error)
+								{
 												log("e", "e", error);
 												res.status(500).json(error).send();
 								}
@@ -92,8 +104,10 @@ apiProdutos.route("/produtos/update-produto").post(function (req, res) {
 								produto.allergens = req.body.allergens;
 								produto.isActive = req.body.isActive;
 
-								produto.save(function (error) {
-												if (error) {
+								produto.save(function (error)
+								{
+												if (error)
+												{
 																log("e", "e", error);
 																res.status(500).json(error).send();
 												}
@@ -107,11 +121,14 @@ apiProdutos.route("/produtos/update-produto").post(function (req, res) {
 
 
 // ✅ UPDATE PRECO PRODUTO
-apiProdutos.route("/produtos/update-produto/only-price").post(function (req, res) {
+apiProdutos.route("/produtos/update-produto/only-price").post(function (req, res)
+{
 				log("r", "s", "updatePrecoProduto (POST - Produtos)");
 
-				schemaProdutos.findOne({ name: req.body.name }, function (error, produto) {
-								if (error) {
+				schemaProdutos.findOne({ name: req.body.name }, function (error, produto)
+				{
+								if (error)
+								{
 												log("e", "e", error);
 												res.status(500).json(error).send();
 								}
@@ -119,8 +136,10 @@ apiProdutos.route("/produtos/update-produto/only-price").post(function (req, res
 								var pre = produto;
 								produto.price = req.body.price;
 
-								produto.save(function (error) {
-												if (error) {
+								produto.save(function (error)
+								{
+												if (error)
+												{
 																log("e", "e", error);
 																res.status(500).json(error).send();
 												}
@@ -134,11 +153,14 @@ apiProdutos.route("/produtos/update-produto/only-price").post(function (req, res
 
 
 // ✅ UPDATE STOCK PRODUTO
-apiProdutos.route("/produtos/update-produto/only-stock").post(function (req, res) {
+apiProdutos.route("/produtos/update-produto/only-stock").post(function (req, res)
+{
 				log("r", "s", "updateStockProduto (POST - Produtos)");
 
-				schemaProdutos.findOne({ name: req.body.name }, function (error, produto) {
-								if (error) {
+				schemaProdutos.findOne({ name: req.body.name }, function (error, produto)
+				{
+								if (error)
+								{
 												log("e", "e", error);
 												res.status(500).json(error).send();
 								}
@@ -146,8 +168,10 @@ apiProdutos.route("/produtos/update-produto/only-stock").post(function (req, res
 								var pre = produto;
 								produto.stock = req.body.stock;
 
-								produto.save(function (error) {
-												if (error) {
+								produto.save(function (error)
+								{
+												if (error)
+												{
 																log("e", "e", error);
 																res.status(500).json(error).send();
 												}
@@ -161,11 +185,14 @@ apiProdutos.route("/produtos/update-produto/only-stock").post(function (req, res
 
 
 // ✅ DELETE PRODUTO
-apiProdutos.route("/produtos/delete-produto").post(function (req, res) {
+apiProdutos.route("/produtos/delete-produto").post(function (req, res)
+{
 				log("r", "s", "deleteProduto (POST - Produtos)");
 
-				schemaProdutos.deleteOne({ name: req.body.name }, function (error, nota) {
-								if (error) {
+				schemaProdutos.deleteOne({ name: req.body.name }, function (error, nota)
+				{
+								if (error)
+								{
 												log("e", "e", error);
 												res.send(error);
 								}

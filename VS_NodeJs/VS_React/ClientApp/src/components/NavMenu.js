@@ -50,7 +50,7 @@ export class NavMenu extends Component {
 
 						<LinkContainer to={'/utilizador'} exact>
 							<NavItem>
-								<Glyphicon glyph='glyphicon-user' /> Utilizador
+								<Glyphicon glyph='user' /> Utilizador
 							</NavItem>
 						</LinkContainer>
 

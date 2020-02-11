@@ -9,8 +9,12 @@ var functions = require("../../functions");
 var log = functions.log;
 
 // CONFIG
+var config = require("../../config");
 var lang = require("../../lang");
 
+// LOG TAGS
+var logStartTags = config.logStartTags;
+var logEndTags = config.logEndTags;
 
 
 
@@ -19,21 +23,23 @@ var lang = require("../../lang");
 
 
 
-// ❎ GET ALL PRODUTOS
-apiProdutos.route("/produtos/get-produtos").post(function (req, res)
+
+// ✅ GET ALL PRODUTOS
+var route_getAllProdutos = "/produtos/get-produtos";
+apiProdutos.route(route_getAllProdutos).post(function (req, res)
 {
-				log("r", "s", "getAll (POST - Produtos)");
+				log("REQUEST", "START", route_getAllProdutos);
 
 				schemaProdutos.get(function (error, produtos)
 				{
 								if (error)
 								{
-												log("e", error);
+												log("ERROR", "END", route_getAllProdutos + logStartTags + error + logEndTags);
 												res.status(500).send(lang.error);
 								}
 								else
 								{
-												log("s", "e", produtos);
+												log("SEND", "END", route_getAllProdutos + logStartTags + produtos + ")");
 												res.status(200).json(produtos);
 								}
 				});
@@ -41,22 +47,22 @@ apiProdutos.route("/produtos/get-produtos").post(function (req, res)
 
 
 
-// ❎ GET PRODUTO BY NAME
-apiProdutos.route("/produtos/get-produto").post(function (req, res)
+// ✅ GET PRODUTO BY NAME
+var route_getProdutoByName = "/produtos/get-produto";
+apiProdutos.route(route_getProdutoByName).post(function (req, res)
 {
-				log("r", "s", "getByName (POST - Produtos)")
-				log("i", "", "Received data: " + req.body.name);
+				log("REQUEST", "START", route_getProdutoByName + logStartTags + "Name: " + req.body.name + logEndTags);
 
 				schemaProdutos.findOne({ name: req.body.name }, function (error, produto)
 				{
 								if (error)
 								{
-												log("e", "e", error);
+												log("ERROR", "END", route_getProdutoByName + logStartTags + error + logEndTags);
 												res.status(500).send(lang.notFound);
 								}
 								else
 								{
-												log("s", "e", produto);
+												log("SEND", "END", route_getProdutoByName + logStartTags + produto + logEndTags);
 												res.status(200).json(produto);
 								}
 				});
@@ -64,10 +70,11 @@ apiProdutos.route("/produtos/get-produto").post(function (req, res)
 
 
 
-// ❎ ADD PRODUTO
+// ✅ ADD PRODUTO
+var route_addProduto = "/produtos/add-produto";
 apiProdutos.route("/produtos/add-produto").post(function (req, res)
 {
-				log("r", "s", "addProduto (POST - Produtos)");
+				log("REQUEST", "START", route_addProduto + logStartTags + "Name: " + req.body.name + "\nStock: " + req.body.stock + "\nPrice: " + req.body.price + "\nAllergens: " + req.body.allergens + "\nIs Active: " + req.body.isActive + logEndTags);
 
 				var novoProduto = new schemaProdutos({
 								name: req.body.name,
@@ -81,12 +88,12 @@ apiProdutos.route("/produtos/add-produto").post(function (req, res)
 				{
 								if (error)
 								{
-												log("e", "e", error);
+												log("ERROR", "END", route_addProduto + logStartTags + error + logEndTags);
 												res.status(500).send(lang.saveError);
 								}
 								else
 								{
-												log("c", "e", "Name: " + req.body.name + "\nStock: " + req.body.stock + "\nPrice: " + req.body.price + "\nAllergens: " + req.body.allergens + "\nIs Active: " + req.body.isActive);
+												log("SEND", "END", route_addProduto + logStartTags + "Name: " + req.body.name + "\nStock: " + req.body.stock + "\nPrice: " + req.body.price + "\nAllergens: " + req.body.allergens + "\nIs Active: " + req.body.isActive + logEndTags);
 												res.status(200).send();
 								}
 				});
@@ -94,16 +101,17 @@ apiProdutos.route("/produtos/add-produto").post(function (req, res)
 
 
 
-// ❎ UPDATE PRODUTO
-apiProdutos.route("/produtos/update-produto").post(function (req, res)
+// ✅ UPDATE PRODUTO
+var route_updateProduto = "/produtos/update-produto";
+apiProdutos.route(route_updateProduto).post(function (req, res)
 {
-				log("r", "s", "updateProduto (POST - Produtos)");
+				log("REQUEST", "START", route_updateProduto + logStartTags + "Old Name: " + req.body.oldName + "\nName: " + req.body.name + "\nStock: " + req.body.stock + "\nPrice: " + req.body.price + "\nAllergens: " + req.body.allergens + "\nIs Active: " + req.body.isActive + logEndTags);
 
 				schemaProdutos.findOne({ name: req.body.oldName }, function (error, produto)
 				{
 								if (error)
 								{
-												log("e", "e", error);
+												log("ERROR", "END", route_updateProduto + logStartTags + error + logEndTags);
 												res.status(500).send(lang.notFound);
 								}
 								else
@@ -118,12 +126,12 @@ apiProdutos.route("/produtos/update-produto").post(function (req, res)
 												{
 																if (error)
 																{
-																				log("e", "e", error);
+																				log("ERROR", "END", route_updateProduto + logStartTags + error + logEndTags);
 																				res.status(500).send(lang.saveError);
 																}
 																else
 																{
-																				log("u", "e", "Produto: " + req.body.oldName + "\nNome: " + req.body.name + "\nStock: " + req.body.stock + "\nPrice: " + req.body.price + "\nAllergens: " + req.body.allergens + "\nIs Active: " + req.body.isActive);
+																				log("SEND", "END", route_updateProduto + logStartTags + "Old Name: " + req.body.oldName + "\nName: " + req.body.name + "\nStock: " + req.body.stock + "\nPrice: " + req.body.price + "\nAllergens: " + req.body.allergens + "\nIs Active: " + req.body.isActive + logEndTags);
 																				res.status(200).send();
 																}
 												});
@@ -133,16 +141,17 @@ apiProdutos.route("/produtos/update-produto").post(function (req, res)
 
 
 
-// ❎ UPDATE STOCK PRODUTO
-apiProdutos.route("/produtos/update-produto/only-stock").post(function (req, res)
+// ✅ UPDATE STOCK PRODUTO
+var route_updateStockProduto = "/produtos/update-produto/only-stock";
+apiProdutos.route(route_updateStockProduto).post(function (req, res)
 {
-				log("r", "s", "updateStockProduto (POST - Produtos)");
+				log("REQUEST", "START", route_updateStockProduto + logStartTags + "Name: " + req.body.name + "\nStock: " + req.body.stock + logEndTags);
 
 				schemaProdutos.findOne({ name: req.body.name }, function (error, produto)
 				{
 								if (error)
 								{
-												log("e", "e", error);
+												log("ERROR", "END", route_updateStockProduto + logStartTags + error + logEndTags);
 												res.status(500).send(lang.notFound);
 								}
 								else
@@ -153,12 +162,12 @@ apiProdutos.route("/produtos/update-produto/only-stock").post(function (req, res
 												{
 																if (error)
 																{
-																				log("e", "e", error);
+																				log("ERROR", "END", route_updateStockProduto + logStartTags + error + logEndTags);
 																				res.status(500).send(lang.saveError);
 																}
 																else
 																{
-																				log("u", "e", "Produto: " + req.body.name + "\nStock: " + req.body.stock);
+																				log("SEND", "END", route_updateStockProduto + logStartTags + "Name: " + req.body.name + "\nStock: " + req.body.stock + logEndTags);
 																				res.status(200).send();
 																}
 												})
@@ -168,21 +177,22 @@ apiProdutos.route("/produtos/update-produto/only-stock").post(function (req, res
 
 
 
-// ❎ DELETE PRODUTO
-apiProdutos.route("/produtos/delete-produto").post(function (req, res)
+// ✅ DELETE PRODUTO
+var route_deleteProduto = "/produtos/delete-produto";
+apiProdutos.route(route_deleteProduto).post(function (req, res)
 {
-				log("r", "s", "deleteProduto (POST - Produtos)");
+				log("ERROR", "START", route_deleteProduto + logStartTags + "Name: " + req.body.name + logEndTags);
 
 				schemaProdutos.deleteOne({ name: req.body.name }, function (error)
 				{
 								if (error)
 								{
-												log("e", "e", error);
+												log("ERROR", "END", route_updateStockProduto + logStartTags + error + logEndTags);
 												res.status(500).send(lang.notFound);
 								}
 								else
 								{
-												log("d", "e", "Nome: " + req.body.name);
+												log("SEND", "END", route_deleteProduto + logStartTags + "Name: " + req.body.name + logEndTags);
 												res.status(200).send();
 								}
 				});

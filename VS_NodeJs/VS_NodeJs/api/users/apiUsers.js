@@ -6,7 +6,7 @@ let apiUsers = require("express").Router();
 
 // CONSOLE LOG
 var log = require("../../functions").log;
-var validateToken = require("../../functions").validateToken;
+var verifyToken = require("../../functions").verifyToken;
 
 // TOKENS
 let jwt = require('jsonwebtoken');

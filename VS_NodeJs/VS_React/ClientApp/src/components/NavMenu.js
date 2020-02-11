@@ -42,11 +42,6 @@ export class NavMenu extends Component {
 							</NavItem>
 						</LinkContainer>
 
-						<LinkContainer to={'/dashboard'} >
-							<NavItem>
-								<Glyphicon glyph='list-alt' /> Dashboard
-							</NavItem>
-						</LinkContainer>
 
 					</Nav>
 				</Navbar.Collapse>

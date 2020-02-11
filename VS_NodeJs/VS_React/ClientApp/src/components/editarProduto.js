@@ -1,38 +1,71 @@
 import React, { Component } from 'react';
+import { PRODUTOS_UPDATE_PRODUTO } from '../API'
 
-class EditarProduto extends Component
-{
-				render()
-				{
-								return (
-												<div>
-																<form action="/action_page.php">
+class EditarProduto extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			Produto: {
+				name: "",
+				stock: 0,
+				price: 0,
+				allergens: true,
+				isActive: true,
+			},
+		}
+	}
 
-																				Name:<br />
-																				<input type="text" name="name" onChange={this.handleChangeName} />
-																				<br />
-																				<br />
-																				Stock:<br />
-																				<input type="number" name="stock" onChange={this.handleChangeStock} />
-																				<br />
-																				<br />
-																				Price:<br />
-																				<input type="number" name="price" />
-																				<br />
-																				<br />
-																				Allergens:<br />
-																				<input type="radio" name="allergens" />
-																				<br />
-																				<br />
-																				Is Active?:<br />
-																				<input type="radio" name="isActive" />
-																				<br /><br />
-																				<button id="EdPro" onClick={this.editarProduto}>Editar Produto</button>
-																</form>
-																<button onClick={() => alert(this.state.textName)}>testar</button>
-												</div>
-								);
-				}
+	handleChange = (e) => {
+		var input = this.state.Produto;
+		input[e.target.name] = e.target.value;
+
+		this.setState({
+			Produto : input
+		})
+	}
+
+	newProduto = (e) =>{
+		e.preventDefault();
+
+		PRODUTOS_UPDATE_PRODUTO(this.state.Produto)
+		.then(result=>{
+			console.log(result.status)
+		})
+	}
+	render() {
+		return (
+			<div id="forms">
+				<form action="/action_page.php" onSubmit={(e) => this.newProduto(e)}>
+					Name: 
+					<input type="text" name="name" onChange={this.handleChange} />
+					<br />
+					<br />
+					Stock:
+					<input type="number" name="stock" step="1" onChange={this.handleChange} />
+					<br />
+					<br />
+					Price: 
+					<input type="number" name="price" step="0.05" onChange={this.handleChange} />
+					<br />
+					<br />
+					Allergens:
+					<select name="allergens" onChange={this.handleChange}>
+						<option value="true">Yes</option>
+						<option value="false">No</option>
+					</select>
+					<br />
+					<br />
+					Is Active?:
+					<select name="isActive" onChange={this.handleChange}>
+						<option value="true">Yes</option>
+						<option value="false">No</option>
+					</select>
+					<br/><br/><br/>
+					<button id="AddPro" type="submit">Editar Produto</button>
+				</form>
+			</div>
+		);
+	}
 }
 
 export default EditarProduto;

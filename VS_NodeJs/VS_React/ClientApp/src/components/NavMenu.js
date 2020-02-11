@@ -18,7 +18,7 @@ export class NavMenu extends Component {
 				</Navbar.Header>
 				<Navbar.Collapse>
 					<Nav>
-						<LinkContainer to={'/'} exact>
+						<LinkContainer to={'/produtos'} exact>
 							<NavItem>
 								<Glyphicon glyph='apple' /> Produtos
 							 </NavItem>
@@ -30,23 +30,24 @@ export class NavMenu extends Component {
 							  </NavItem>
 						</LinkContainer>
 
-						<LinkContainer to={'/dashboard'}>
-							<NavItem>
-								<Glyphicon glyph='list-alt' /> Dashboard
-							</NavItem>
-						</LinkContainer>
-
-						<LinkContainer to={'/editarProduto'} exact>
+						<LinkContainer to={'/adicionarProduto'} exact>
 							<NavItem>
 								<Glyphicon glyph='list-alt' /> Adicionar Produto
 							</NavItem>
 						</LinkContainer>
 
-						<LinkContainer to={'/adicionarProduto'} exact>
+						<LinkContainer to={'/editarProduto'} exact>
 							<NavItem>
 								<Glyphicon glyph='list-alt' /> Editar Produto
 							</NavItem>
 						</LinkContainer>
+
+						<LinkContainer to={'/dashboard'} >
+							<NavItem>
+								<Glyphicon glyph='list-alt' /> Dashboard
+							</NavItem>
+						</LinkContainer>
+
 					</Nav>
 				</Navbar.Collapse>
 				<Nav>

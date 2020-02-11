@@ -1,6 +1,5 @@
-﻿import Produtos from "./components/Produtos";
-
-var serverIp = "192.168.43.138:1337";
+﻿
+var serverIp = "83.132.83.200:1337";
 var routeProdutos = "http://" + serverIp + "/api/produtos";
 var routeUsers = "http://" + serverIp + "/api/users";
 

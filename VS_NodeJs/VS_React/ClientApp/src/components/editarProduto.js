@@ -32,10 +32,40 @@ class EditarProduto extends Component {
 			console.log(result.status)
 		})
 	}
+	editarProduto() {
+		const res = fetch('http://192.168.43.138:1337/api/produtos/get-produtos', {
+		  method: 'post',
+		})
+		  .then((response) => response.json())
+		  .then((responseJson) => {
+			return responseJson.movies;
+		  })
+		  .catch((error) => {
+			console.error(error);
+		  });
+		console.log(res);
+	  }
+	  
+  removerProduto() {
+    const res = fetch('http://192.168.43.138:1337/api/produtos/delete-produto', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: 'produto2' }),
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        return responseJson.movies;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    console.log(res);
+  }
+
 	render() {
 		return (
 			<div id="forms">
-				<form action="/action_page.php" onSubmit={(e) => this.newProduto(e)}>
+				<form action="/action_page.php" onSubmit={(e) => this.editarProduto(e)}>
 					Name: 
 					<input type="text" name="name" onChange={this.handleChange} />
 					<br />

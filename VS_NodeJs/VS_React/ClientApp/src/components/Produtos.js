@@ -18,7 +18,7 @@ export class Produtos extends Component {
 	}
 
 	pedirProdutos() {
-		const res = fetch("http://192.168.43.138:1337/api/produtos/get-produtos", {
+		const res = fetch("http://83.132.83.200:1337/api/produtos/get-produtos", {
 			method: "post",
 			headers: { "Content-Type": "application/json" },
 		})
@@ -36,13 +36,6 @@ export class Produtos extends Component {
 	}
 
 	render() {
-		function contarCusto() {
-			this.state.JsonProdutos(produto)
-			var contar=0;
-			contar=contar + produto.nome
-			alert(contar)
-	}
-
 		if(this.state.isLoading){
 		return(<div>Is loading...</div>)
 		}else{
@@ -62,7 +55,7 @@ export class Produtos extends Component {
 							)
 						})
 					}
-					<button onClick={contarCusto}>Contar</button>
+
 				</div>
 			);
 		}

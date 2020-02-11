@@ -331,13 +331,6 @@ apiUsers.route("/users/login").post(function (req, res)
 				});
 });
 
-apiUsers.route("/test/:token").post(function (req, res)
-{
-				validateToken(req.params.token, function (err, result)
-				{
-								console.log(result);
-				});
-})
 
 
 // ❎ USER IS ADMIN

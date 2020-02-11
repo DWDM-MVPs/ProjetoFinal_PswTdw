@@ -4,9 +4,6 @@ let jwt = require('jsonwebtoken');
 // CONFIG
 var config = require("./config");
 
-
-
-
 module.exports = {
 				log: function (t, w, msg)
 				{
@@ -27,22 +24,18 @@ module.exports = {
 
 								if (w == "e") console.log("\n # ================================================================ #\n\n\n\n\n\n\n");
 				},
-				validateToken: function (token, callback)
+				verifyToken: function (token, callback)
 				{
 								try
 								{
 												jwt.verify(token, config.tokenSecret, function (err, decoded)
 												{
-																if (err)
-																{
-																				return false;
-																}
 																callback(err, decoded.name);
 												});
 								}
-								catch
+								catch (err)
 								{
-												return false;
+												callback(err, null);
 								}
 				},
 };;

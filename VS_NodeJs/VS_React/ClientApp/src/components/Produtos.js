@@ -36,6 +36,12 @@ export class Produtos extends Component {
 	}
 
 	render() {
+		function contarCusto() {
+			this.state.JsonProdutos(produto)
+			var contar=0;
+			contar=contar + produto.nome
+			alert(contar)
+	}
 
 		if(this.state.isLoading){
 		return(<div>Is loading...</div>)
@@ -56,13 +62,11 @@ export class Produtos extends Component {
 							)
 						})
 					}
+					<button onClick={contarCusto}>Contar</button>
 				</div>
 			);
 		}
 	}
-
-
-
 }
 export default Produtos;
 

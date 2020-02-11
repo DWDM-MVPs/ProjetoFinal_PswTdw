@@ -89,16 +89,16 @@ apiProdutos.route("/produtos/add-produto").post(function (req, res)
 								}
 								else
 								{
-												schemaUsers.findOne({ name: username }, function (error, user)
+												schemaUsers.findOne({ 'name': username }, function (err, user)
 												{
-																if (error)
+																if (err)
 																{
 																				res.status(500).send(lang.notFound);
 																}
 																else
 																{
 																				// CASO POR ALGUM MOTIVO O UTILIZADOR ENVIADO NO TOKEN NAO SEJA ADMIN, MANDA UMA MENSAGEM DE ERRO A DIZER QUE O UTILIZADOR NAO TEM PERMISSOES
-																				if (user.isAdmin == false)
+																				if (user.isAdmin === false)
 																				{
 																								res.status(500).send(lang.noPermission);
 																				}

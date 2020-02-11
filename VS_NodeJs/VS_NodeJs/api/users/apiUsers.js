@@ -264,7 +264,6 @@ apiUsers.route("/users/close-carrinho").post(function (req, res)
 				});
 });
 
-	schemaUsers.findOne({ name: req.body.name }, function (error, user) {
 
 
 // ❎ GET CARRINHO
@@ -313,7 +312,7 @@ apiUsers.route("/users/login").post(function (req, res)
 												if (user)
 												{
 																log("i", "", "Encontrado um utilizador que corresponde ao Username e Password fornecidos.");
-																
+
 																var payload = { name: req.body.name };
 																var options = { expiresIn: "1h", };
 																var secret = config.tokenSecret;
@@ -332,10 +331,12 @@ apiUsers.route("/users/login").post(function (req, res)
 				});
 });
 
-apiUsers.route("/test/:token").post(function (req, res) {
-	validateToken(req.params.token, function (err, result) {
-		console.log(result);
-	});
+apiUsers.route("/test/:token").post(function (req, res)
+{
+				validateToken(req.params.token, function (err, result)
+				{
+								console.log(result);
+				});
 })
 
 

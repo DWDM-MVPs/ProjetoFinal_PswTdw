@@ -1,0 +1,13 @@
+#caixaProduto{
+    border: 2px;
+    border-radius: 5px;
+    background-color:white;
+    border-style: solid;
+    width: 20%;
+    height: 150px;
+}
+#Texto{
+    font-weight: bold;
+    margin-top: 60px;
+    margin-left: 10px;
+}

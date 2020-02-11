@@ -43,28 +43,6 @@ class AdicionarProduto extends Component {
       </div>
     );
   }
-  submitEvent = (e, novoProd) => {
-		e.preventDefault();
-
-		var produtos = this.props.P;
-		herois.push(
-			{
-        name: null,
-        stock:"",
-				price: "",
-				allergens: "",
-				isActive: "",
-			});
-
-		if (this.state.Super_heroi.id != null) {
-			herois.push(
-				{
-					listpro_of_heroes: herois,
-				})
-		}
-
-		setProdsByUserId(produtos);
-	}
 }
 
 export default AdicionarProduto;

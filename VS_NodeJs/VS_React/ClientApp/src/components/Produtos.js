@@ -1,34 +1,27 @@
 import React, { Component } from "react";
-import ProdList from '../components/ProdList'
+import '../css/Produtos.css';
 
 export class Produtos extends Component {
-	displayName = Produtos.name
-
-	constructor(props) {
-		super(props);
-		this.state = {
-			ProdList: [] ,
-		};
-	}
-
 
 	render() {
 
 		return (
 			<div>
 				<h1>Produtos</h1>
-				<ProdInfo name="Teste" price="3" />
-							{
-								Object.keys(this.state.ProdList).map((name, e) => {
-									if (this.state.ProdList.includes(e)) {
-										return (<ProdInfo name={Prod.name} price={Prod.price} />)
-									}
-									else return null;
-								}
-								)        
-							}
+				<div id="caixaProduto">
+					<div id="Texto">
+					Nome:{Produtos.nome}<br/>
+					Custo:{Produtos.custo}<br/>
+					Stock:{Produtos.stock}<br/>
+					Alergénios:{Produtos.allergenios}<br/>
+					</div>
+				</div>
 			</div>
 		);
 	}
 }
 export default Produtos;  
+
+
+
+

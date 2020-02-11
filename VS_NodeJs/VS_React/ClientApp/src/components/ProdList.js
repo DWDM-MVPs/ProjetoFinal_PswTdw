@@ -1,4 +1,4 @@
-const ProdList = [
+const ProductList = [
 	{
 		name: 'Teste',
 		price: 3 + '€',
@@ -7,4 +7,4 @@ const ProdList = [
         isActive: true,
 	},
 ]
-export default ProdList;
+export default ProductList;

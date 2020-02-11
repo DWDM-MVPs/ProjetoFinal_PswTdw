@@ -61,13 +61,6 @@ class Dashboard extends Component {
     console.log(res);
   }
 
-  handleChangeName(event) {
-    this.setState({ textName: event.target.value });
-  }
-  handleChangeStock(event) {
-    this.setState({ textStock: event.target.value });
-  }
-
   render() {
     return (
       <div className="Component">
@@ -75,23 +68,23 @@ class Dashboard extends Component {
           <form action="/action_page.php">
 
             Name:<br />
-            <input type="text" name="name" onChange={(e) => this.updateEvent(e, "name")} value={this.props.ProdList.name} />
+            <input type="text" name="name"/>
             <br />
             <br />
             Stock:<br />
-            <input type="number" name="stock" onChange={(e) => this.updateEvent(e, "stock")} value={this.props.ProdList.stock} />
+            <input type="number" name="stock"/>
             <br />
             <br />
             Price:<br />
-            <input type="number" name="price" onChange={(e) => this.updateEvent(e, "price")} value={this.props.ProdList.price} />
+            <input type="number" name="price"/>
             <br />
             <br />
             Allergens:<br />
-            <input type="radio" name="allergens" onChange={(e) => this.updateEvent(e, "allergens")} value={this.props.ProdList.allergens} />
+            <input type="radio" name="allergens"/>
             <br />
             <br />
             Is Active?:<br />
-            <input type="radio" name="isActive" onChange={(e) => this.updateEvent(e, "isActive")} value={this.props.ProdList.isActive} />
+            <input type="radio" name="isActive"/>
             <br /><br />
             <button id="AddPro" onClick={this.adicionarProduto}>Adicionar Produto</button>
           </form>
@@ -105,7 +98,5 @@ class Dashboard extends Component {
 export default Dashboard;
 
 /*
-<button id="AddPro" onClick={this.adicionarProduto}>Adicionar Produto</button>
-<button id="RemPro" onClick={this.removerProduto}>Remover Produto</button>
-<button id="EdPro" onClick={this.editarProduto}>Editar Produto</button>
+           <input type="text" name="name" onChange={(e) => this.updateEvent(e, "name")} value={this.props.ProdList.name} />
 */

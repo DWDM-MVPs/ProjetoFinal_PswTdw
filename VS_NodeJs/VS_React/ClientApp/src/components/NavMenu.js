@@ -38,13 +38,13 @@ export class NavMenu extends Component {
 
 						<LinkContainer to={'/editarProduto'} exact>
 							<NavItem>
-								<Glyphicon glyph='list-alt' /> Editar Produto
+								<Glyphicon glyph='list-alt' /> Adicionar Produto
 							</NavItem>
 						</LinkContainer>
 
 						<LinkContainer to={'/adicionarProduto'} exact>
 							<NavItem>
-								<Glyphicon glyph='list-alt' /> Adicionar Produto
+								<Glyphicon glyph='list-alt' /> Editar Produto
 							</NavItem>
 						</LinkContainer>
 					</Nav>

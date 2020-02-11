@@ -22,7 +22,7 @@ var config = require("../../config");
 
 
 
-// ✅ GET USER BY TOKEN
+// ✅ GET USER BY NAME
 apiUsers.route("/users/get-user/by-name").post(function (req, res)
 {
 				log("r", "s", "getByName (POST - Users)")
@@ -32,7 +32,7 @@ apiUsers.route("/users/get-user/by-name").post(function (req, res)
 								if (error)
 								{
 												log("e", "e", error);
-												res.status(404).json(error).send();
+												res.status(500).json(error).send();
 								}
 
 								log("s", "e", produto);
@@ -42,24 +42,18 @@ apiUsers.route("/users/get-user/by-name").post(function (req, res)
 
 
 
-// ✅ ADD PRODUTO TO CARRINHO
-apiUsers.route("/users/update-carrinho/add-produto").post(function (req, res)
+// ✅ GET USER BY TOKEN
+apiUsers.route("/users/get-user/by-token").post(function (req, res)
 {
-				log("r", "s", "updateProduto/addProduto (POST - Users)");
+				log("r", "s", "getByToken (POST - Users)")
 
-				schemaUsers.findOne({ name: req.body.name }, function (error, user)
+				verifyToken(req.body.token, function (err, username)
 				{
-								if (error)
+								if (err)
 								{
-												log("e", "e", error);
 												res.status(500).json(error).send();
 								}
-
-								var carrinho = JSON.parse(user.carrinho);
-								carrinho.items.push(req.body.produto);
-								user.carrinho = JSON.stringify(carrinho);
-
-								user.save(function (error)
+								schemaUsers.findOne({ name: username }, function (error, produto)
 								{
 												if (error)
 												{
@@ -67,23 +61,179 @@ apiUsers.route("/users/update-carrinho/add-produto").post(function (req, res)
 																res.status(500).json(error).send();
 												}
 
-												log("u", "e", "Carrinho: " + req.body.carrinho);
-												res.status(204).send();
+												log("s", "e", produto);
+												res.status(200).json(produto).send();
 								});
 				});
 });
 
 
-
-apiUsers.route("/users/update-carrinho/remove-produto").post(function (req, res)
+// ✅ ADD PRODUTO TO CARRINHO
+apiUsers.route("/users/carrinho/add-produto").post(function (req, res)
 {
-				log("r", "s", "updateProduto/removeProduto (POST - Users)");
-
-				schemaUsers.findOne({ name: req.body.name }, function (error, user)
+				verifyToken(req.body.token, function (err, username)
 				{
+								if (err)
+								{
+												res.status(500).json(err).send();
+								}
 
+								schemaUsers.findOne({ name: username }, function (error, user)
+								{
+												if (error)
+												{
+																res.status(500).json(error).send();
+												}
+												
+												var carrinho = user.carrinho || [];
+												carrinho.push(req.body.produto);
+												console.log(carrinho);
+
+												user.carrinho = carrinho;
+
+												user.save(function (error)
+												{
+																console.log(error);
+																if (error)
+																{
+																				res.status(500).json(error).send();
+																}
+																res.status(200).send();
+												})
+								});
 				})
-})
+});
+
+
+
+
+// ✅ REMOVE PRODUTO FROM CARRINHO
+apiUsers.route("/users/carrinho/remove-produto").post(function (req, res)
+{
+				verifyToken(req.body.token, function (err, username)
+				{
+								if (err)
+								{
+												res.status(500).json(err).send();
+								}
+
+								schemaUsers.findOne({ name: username }, function (error, user)
+								{
+												if (error)
+												{
+																res.status(500).json(error).send();
+												}
+
+												var carrinho = user.carrinho || [];
+												var index = carrinho.indexOf(req.body.produto);
+												if (index !== -1) carrinho.splice(index, 1);
+												console.log(carrinho);
+
+												user.carrinho = carrinho;
+
+												user.save(function (error)
+												{
+																console.log(error);
+																if (error)
+																{
+																				res.status(500).json(error).send();
+																}
+																res.status(200).send();
+												})
+								});
+				})
+});
+
+
+
+// ✅ CLOSE CARRINHO
+apiUsers.route("/users/close-carrinho").post(function (req, res)
+{
+				log("r", "s", "/users/close-carrinho: " + req.body.token);
+
+				verifyToken(req.body.token, function (err, username)
+				{
+								if (err)
+								{
+												res.status(500).json(err).send();
+								}
+								schemaUsers.findOne({ name: username }, function (error, user)
+								{
+												if (error)
+												{
+																res.status(500).json(error).send();
+												}
+
+												var carrinho = user.carrinho || [];
+
+												if (carrinho == [])
+												{
+																res.status(500).send();
+												}
+												var historico = user.historico || [];
+												historico.push(carrinho);
+
+												user.carrinho = [];
+												user.historico = historico;
+
+
+												user.save(function (error)
+												{
+																console.log(error);
+																if (error)
+																{
+																				res.status(500).json(error).send();
+																}
+																res.status(200).send();
+												})
+								});
+				});
+});
+
+
+// ✅ GET CARRINHO
+apiUsers.route("/users/get-carrinho").post(function (req, res)
+{
+				log("r", "s", "/users/get-carrinho: " + req.body.token);
+				
+				verifyToken(req.body.token, function (err, username)
+				{
+								if (err)
+								{
+												res.status(500).json(err).send();
+								}
+								schemaUsers.findOne({ name: username }, function (error, user)
+								{
+												if (error)
+												{
+																res.status(500).json(error).send();
+												}
+
+												var carrinho = user.carrinho || [];
+
+												if (carrinho == [])
+												{
+																res.status(500).send();
+												}
+												var historico = user.historico || [];
+												historico.push(carrinho);
+
+												user.carrinho = [];
+												user.historico = historico;
+
+
+												user.save(function (error)
+												{
+																console.log(error);
+																if (error)
+																{
+																				res.status(500).json(error).send();
+																}
+																res.status(200).send();
+												})
+								});
+				});
+});
 
 
 
@@ -118,50 +268,37 @@ apiUsers.route("/users/login").post(function (req, res)
 								else
 								{
 												log("l", "e", "Nenhum utilizador com a combinação de <name> e <password> foi encontrado.");
-												res.status(401).send(null);
+												res.status(500).send(null);
 								}
 				});
 });
 
-apiUsers.route("/test/:token").post(function (req, res)
+
+
+// ✅ USER IS ADMIN
+apiUsers.route("/users/is-admin").post(function (req, res)
 {
-				validateToken(req.params.token, function (err, result)
+				verifyToken(req.body.token, function (err, username)
 				{
-								console.log(result);
-				});
-})
-
-// ✅ CLOSE CARRINHO
-apiUsers.route("/users/close-carrinho").post(function (req, res)
-{
-				log("r", "s", "Fechar carrinho: " + req.body.name);
-
-				schemaUsers.findOne({ name: req.body.name }, function (error, user)
-				{
-								var carrinho = user.carrinho;
-
-								for (var i = 0; i < carrinho.length; i++)
+								if (err)
 								{
-												var obj = carrinho[i];
-												console.log(carrinho.name);
+												res.status(500).json(err).send();
 								}
-
-								var obj = JSON.parse(user.historico);
-								obj['historico'].push(user.carrinho);
-								jsonStr = JSON.stringify(obj);
-								user.historico = jsonStr;
-								user.carrinho = null;
-
-								user.save(function (error)
+								schemaUsers.findOne({ name: username }, function (error, user)
 								{
 												if (error)
 												{
-																log("e", "e", error);
 																res.status(500).json(error).send();
 												}
 
-												log("u", "e", "Histórico: " + user.historico);
-												res.status(204).send();
+												if (user.isAdmin == true)
+												{
+																res.status(200).send(true);
+												}
+												else
+												{
+																res.status(200).send(false);
+												}
 								});
 				});
 });

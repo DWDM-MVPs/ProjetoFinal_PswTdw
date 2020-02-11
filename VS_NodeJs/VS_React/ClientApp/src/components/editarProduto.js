@@ -24,7 +24,7 @@ class EditarProduto extends Component {
 		})
 	}
 
-	newProduto = (e) =>{
+	editarProduto = (e) =>{
 		e.preventDefault();
 
 		PRODUTOS_UPDATE_PRODUTO(this.state.Produto)
@@ -32,35 +32,7 @@ class EditarProduto extends Component {
 			console.log(result.status)
 		})
 	}
-	editarProduto() {
-		const res = fetch('http://192.168.43.138:1337/api/produtos/get-produtos', {
-		  method: 'post',
-		})
-		  .then((response) => response.json())
-		  .then((responseJson) => {
-			return responseJson.movies;
-		  })
-		  .catch((error) => {
-			console.error(error);
-		  });
-		console.log(res);
-	  }
-	  
-  removerProduto() {
-    const res = fetch('http://192.168.43.138:1337/api/produtos/delete-produto', {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: 'produto2' }),
-    })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        return responseJson.movies;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    console.log(res);
-  }
+
 
 	render() {
 		return (
@@ -99,3 +71,35 @@ class EditarProduto extends Component {
 }
 
 export default EditarProduto;
+
+/*
+	editarProduto() {
+		const res = fetch('http://192.168.43.138:1337/api/produtos/get-produtos', {
+		  method: 'post',
+		})
+		  .then((response) => response.json())
+		  .then((responseJson) => {
+			return responseJson.movies;
+		  })
+		  .catch((error) => {
+			console.error(error);
+		  });
+		console.log(res);
+	  }
+	  
+  removerProduto() {
+    const res = fetch('http://192.168.43.138:1337/api/produtos/delete-produto', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: 'produto2' }),
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        return responseJson.movies;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    console.log(res);
+  }
+*/

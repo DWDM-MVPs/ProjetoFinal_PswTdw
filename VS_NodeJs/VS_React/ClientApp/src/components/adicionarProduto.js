@@ -28,34 +28,28 @@ class AdicionarProduto extends Component {
 	newProduto = (e) =>{
 		e.preventDefault();
 
-		PRODUTOS_NEW_PRODUTO(this.state.Produto)
-		.then(result=>{
-			console.log(result.status)
-		})
+		fetch("http://83.132.83.200:1337/api/produtos/add-produto", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(
+				{
+					token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE1ODE0NjQ1MzUsImV4cCI6MTU4MTQ2ODEzNX0.qMOOLD2DJFAtwI1swztTCtthv-De7i_jDGJMqS96nck",
+					name: this.state.name,
+					stock: this.state.stock,
+					price: this.state.price,
+					allergens: this.state.allergens,
+					isActive: this.state.isActive,
+				}
+			),
+		}).then((response) => {return response});
 	}
-	adicionarProdutO = (e) =>{
-		e.preventDefault();
-		const res = fetch('http://192.168.43.138:1337/api/produtos/add-produto', {
-		  method: 'post',
-		  headers: { 'Content-Type': 'application/json' },
-		  body: JSON.stringify({ name: "", stock: ' ', price: ' ', allergens: ' ', isActive: ' ' }),
-	
-		})
-		  .then((response) => response.json())
-		  .then((responseJson) => {
-			return responseJson.movies;
-		  })
-		  .catch((error) => {
-			console.error(error);
-		  });
-		console.log(res);
-	  }
+
 
 
 	render() {
 		return (
 			<div id="forms">
-				<form action="/action_page.php" onSubmit={(e) => this.ad(e)}>
+				<form action="/action_page.php" onSubmit={(e) => this.newProduto(e)}>
 					Name: 
 					<input type="text" name="name" onChange={this.handleChange} />
 					<br />
@@ -88,3 +82,23 @@ class AdicionarProduto extends Component {
 	}
 }
 export default AdicionarProduto;
+
+/*
+	adicionarProdutO = (e) =>{
+		e.preventDefault();
+		const res = fetch('83.132.83.200:1337/api/produtos/add-produto', {
+		  method: 'post',
+		  headers: { 'Content-Type': 'application/json' },
+		  body: JSON.stringify({ name: "", stock: ' ', price: ' ', allergens: ' ', isActive: ' ' }),
+	
+		})
+		  .then((response) => response.json())
+		  .then((responseJson) => {
+			return responseJson.movies;
+		  })
+		  .catch((error) => {
+			console.error(error);
+		  });
+		console.log(res);
+	  }
+*/ 

@@ -28,6 +28,7 @@ var SchemaProdutos = mongoose.Schema({
 // EXPORT
 var Produtos = module.exports = mongoose.model('produtos', SchemaProdutos);
 
-module.exports.get = function (callback, limit) {
+module.exports.get = function (callback, limit)
+{
 				Produtos.find(callback).limit(limit);
 }

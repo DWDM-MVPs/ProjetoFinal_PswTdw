@@ -30,9 +30,6 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="api\validateToken.js">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="config.js">
       <SubType>Code</SubType>
     </Compile>

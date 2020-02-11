@@ -8,6 +8,9 @@ let apiProdutos = require("express").Router();
 var functions = require("../../functions");
 var log = functions.log;
 
+// CONFIG
+var lang = require("../../lang");
+
 
 
 
@@ -26,11 +29,13 @@ apiProdutos.route("/produtos/get-produtos").post(function (req, res)
 								if (error)
 								{
 												log("e", error);
-												res.status(404).send(error);
+												res.status(500).send(lang.error);
 								}
-
-								log("s", "e", produtos);
-								res.status(200).json(produtos).send();
+								else
+								{
+												log("s", "e", produtos);
+												res.status(200).json(produtos);
+								}
 				});
 });
 
@@ -47,11 +52,13 @@ apiProdutos.route("/produtos/get-produto").post(function (req, res)
 								if (error)
 								{
 												log("e", "e", error);
-												res.status(404).json(error).send();
+												res.status(500).send(lang.notFound);
 								}
-
-								log("s", "e", produto);
-								res.status(200).json(produto).send();
+								else
+								{
+												log("s", "e", produto);
+												res.status(200).json(produto);
+								}
 				});
 });
 
@@ -75,11 +82,13 @@ apiProdutos.route("/produtos/add-produto").post(function (req, res)
 								if (error)
 								{
 												log("e", "e", error);
-												res.status(500).json(error).send();
+												res.status(500).send(lang.saveError);
 								}
-
-								log("c", "e", "Name: " + req.body.name + "\nStock: " + req.body.stock + "\nPrice: " + req.body.price + "\nAllergens: " + req.body.allergens + "\nIs Active: " + req.body.isActive);
-								res.status(201).send();
+								else
+								{
+												log("c", "e", "Name: " + req.body.name + "\nStock: " + req.body.stock + "\nPrice: " + req.body.price + "\nAllergens: " + req.body.allergens + "\nIs Active: " + req.body.isActive);
+												res.status(200).send();
+								}
 				});
 });
 
@@ -95,58 +104,30 @@ apiProdutos.route("/produtos/update-produto").post(function (req, res)
 								if (error)
 								{
 												log("e", "e", error);
-												res.status(500).json(error).send();
+												res.status(500).send(lang.notFound);
 								}
-
-								produto.name = req.body.name;
-								produto.stock = req.body.stock;
-								produto.price = req.body.price;
-								produto.allergens = req.body.allergens;
-								produto.isActive = req.body.isActive;
-
-								produto.save(function (error)
+								else
 								{
-												if (error)
+												produto.name = req.body.name;
+												produto.stock = req.body.stock;
+												produto.price = req.body.price;
+												produto.allergens = req.body.allergens;
+												produto.isActive = req.body.isActive;
+
+												produto.save(function (error)
 												{
-																log("e", "e", error);
-																res.status(500).json(error).send();
-												}
-
-												log("u", "e", "Produto: " + req.body.oldName + "\nNome: " + req.body.name + "\nStock: " + req.body.stock + "\nPrice: " + req.body.price + "\nAllergens: " + req.body.allergens + "\nIs Active: " + req.body.isActive);
-												res.status(204).send();
-								})
-				});
-});
-
-
-
-// ❎ UPDATE PRECO PRODUTO
-apiProdutos.route("/produtos/update-produto/only-price").post(function (req, res)
-{
-				log("r", "s", "updatePrecoProduto (POST - Produtos)");
-
-				schemaProdutos.findOne({ name: req.body.name }, function (error, produto)
-				{
-								if (error)
-								{
-												log("e", "e", error);
-												res.status(500).json(error).send();
+																if (error)
+																{
+																				log("e", "e", error);
+																				res.status(500).send(lang.saveError);
+																}
+																else
+																{
+																				log("u", "e", "Produto: " + req.body.oldName + "\nNome: " + req.body.name + "\nStock: " + req.body.stock + "\nPrice: " + req.body.price + "\nAllergens: " + req.body.allergens + "\nIs Active: " + req.body.isActive);
+																				res.status(200).send();
+																}
+												});
 								}
-
-								var pre = produto;
-								produto.price = req.body.price;
-
-								produto.save(function (error)
-								{
-												if (error)
-												{
-																log("e", "e", error);
-																res.status(500).json(error).send();
-												}
-
-												log("u", "e", "Produto: " + req.body.name + " (" + pre.name + ")\nPrice: " + req.body.price + " (" + pre.price + ")");
-												res.status(204).send();
-								})
 				});
 });
 
@@ -162,23 +143,26 @@ apiProdutos.route("/produtos/update-produto/only-stock").post(function (req, res
 								if (error)
 								{
 												log("e", "e", error);
-												res.status(500).json(error).send();
+												res.status(500).send(lang.notFound);
 								}
-
-								var pre = produto;
-								produto.stock = req.body.stock;
-
-								produto.save(function (error)
+								else
 								{
-												if (error)
-												{
-																log("e", "e", error);
-																res.status(500).json(error).send();
-												}
+												produto.stock = req.body.stock;
 
-												log("u", "e", "Produto: " + req.body.name + " (" + pre.name + ")\nStock: " + req.body.stock + " (" + pre.stock + ")");
-												res.status(204).send();
-								})
+												produto.save(function (error)
+												{
+																if (error)
+																{
+																				log("e", "e", error);
+																				res.status(500).send(lang.saveError);
+																}
+																else
+																{
+																				log("u", "e", "Produto: " + req.body.name + "\nStock: " + req.body.stock);
+																				res.status(200).send();
+																}
+												})
+								}
 				});
 });
 
@@ -189,16 +173,18 @@ apiProdutos.route("/produtos/delete-produto").post(function (req, res)
 {
 				log("r", "s", "deleteProduto (POST - Produtos)");
 
-				schemaProdutos.deleteOne({ name: req.body.name }, function (error, nota)
+				schemaProdutos.deleteOne({ name: req.body.name }, function (error)
 				{
 								if (error)
 								{
 												log("e", "e", error);
-												res.send(error);
+												res.status(500).send(lang.notFound);
 								}
-
-								log("d", "e", "Nome: " + req.body.nome);
-								res.status(204).send();
+								else
+								{
+												log("d", "e", "Nome: " + req.body.name);
+												res.status(200).send();
+								}
 				});
 });
 

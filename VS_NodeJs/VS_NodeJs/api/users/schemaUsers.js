@@ -11,15 +11,21 @@ var SchemaUsers = mongoose.Schema({
 								type: String,
 								required: true,
 				},
+				balance: {
+								type: Number,
+								default: 0,
+				},
 				isAdmin: {
 								type: Boolean,
 								default: false,
 				},
 				carrinho: {
 								type: Array,
+								default: [],
 				},
 				history: {
 								type: Array,
+								default: [],
 				}
 });
 

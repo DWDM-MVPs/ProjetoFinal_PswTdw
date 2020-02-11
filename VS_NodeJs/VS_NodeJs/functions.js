@@ -5,24 +5,13 @@ let jwt = require('jsonwebtoken');
 var config = require("./config");
 
 module.exports = {
-				log: function (t, w, msg)
+				log: function (tag, position, logMessage)
 				{
-								var pre;
+								if (position == "START") console.log("\n # ================================================================ #\n\n" + new Date());
 
-								if (t == "i") pre = "INFO";
-								else if (t == "r") pre = "REQUEST";
-								else if (t == "e") pre = "ERROR";
-								else if (t == "s") pre = "SENT";
-								else if (t == "c") pre = "CREATE";
-								else if (t == "l") pre = "LOGIN";
-								else if (t == "d") pre = "DELETE";
-								else if (t == "u") pre = "UPDATE";
+								console.log("\n[" + tag + "] " + logMessage);
 
-								if (w == "s") console.log("\n # ================================================================ #\n\n" + new Date());
-
-								console.log("\n[" + pre + "] " + msg);
-
-								if (w == "e") console.log("\n # ================================================================ #\n\n\n\n\n\n\n");
+								if (position == "END") console.log("\n # ================================================================ #\n\n\n\n\n\n\n");
 				},
 				verifyToken: function (token, callback)
 				{

@@ -45,6 +45,9 @@
     <Compile Include="api\users\schemaUsers.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="lang.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="server.js" />
     <Compile Include="functions.js">
       <SubType>Code</SubType>

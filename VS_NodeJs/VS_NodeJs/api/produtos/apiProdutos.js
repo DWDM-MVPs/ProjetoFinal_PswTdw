@@ -16,7 +16,7 @@ var log = functions.log;
 
 
 
-// ✅ GET ALL PRODUTOS
+// ❎ GET ALL PRODUTOS
 apiProdutos.route("/produtos/get-produtos").post(function (req, res)
 {
 				log("r", "s", "getAll (POST - Produtos)");
@@ -36,7 +36,7 @@ apiProdutos.route("/produtos/get-produtos").post(function (req, res)
 
 
 
-// ✅ GET PRODUTO BY NAME
+// ❎ GET PRODUTO BY NAME
 apiProdutos.route("/produtos/get-produto").post(function (req, res)
 {
 				log("r", "s", "getByName (POST - Produtos)")
@@ -57,7 +57,7 @@ apiProdutos.route("/produtos/get-produto").post(function (req, res)
 
 
 
-// ✅ ADD PRODUTO
+// ❎ ADD PRODUTO
 apiProdutos.route("/produtos/add-produto").post(function (req, res)
 {
 				log("r", "s", "addProduto (POST - Produtos)");
@@ -85,7 +85,7 @@ apiProdutos.route("/produtos/add-produto").post(function (req, res)
 
 
 
-// ✅ UPDATE PRODUTO
+// ❎ UPDATE PRODUTO
 apiProdutos.route("/produtos/update-produto").post(function (req, res)
 {
 				log("r", "s", "updateProduto (POST - Produtos)");
@@ -120,7 +120,7 @@ apiProdutos.route("/produtos/update-produto").post(function (req, res)
 
 
 
-// ✅ UPDATE PRECO PRODUTO
+// ❎ UPDATE PRECO PRODUTO
 apiProdutos.route("/produtos/update-produto/only-price").post(function (req, res)
 {
 				log("r", "s", "updatePrecoProduto (POST - Produtos)");
@@ -152,7 +152,7 @@ apiProdutos.route("/produtos/update-produto/only-price").post(function (req, res
 
 
 
-// ✅ UPDATE STOCK PRODUTO
+// ❎ UPDATE STOCK PRODUTO
 apiProdutos.route("/produtos/update-produto/only-stock").post(function (req, res)
 {
 				log("r", "s", "updateStockProduto (POST - Produtos)");
@@ -184,7 +184,7 @@ apiProdutos.route("/produtos/update-produto/only-stock").post(function (req, res
 
 
 
-// ✅ DELETE PRODUTO
+// ❎ DELETE PRODUTO
 apiProdutos.route("/produtos/delete-produto").post(function (req, res)
 {
 				log("r", "s", "deleteProduto (POST - Produtos)");

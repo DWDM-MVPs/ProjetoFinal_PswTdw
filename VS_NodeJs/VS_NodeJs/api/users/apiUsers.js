@@ -264,6 +264,7 @@ apiUsers.route("/users/close-carrinho").post(function (req, res)
 				});
 });
 
+	schemaUsers.findOne({ name: req.body.name }, function (error, user) {
 
 
 // ❎ GET CARRINHO
@@ -331,6 +332,11 @@ apiUsers.route("/users/login").post(function (req, res)
 				});
 });
 
+apiUsers.route("/test/:token").post(function (req, res) {
+	validateToken(req.params.token, function (err, result) {
+		console.log(result);
+	});
+})
 
 
 // ❎ USER IS ADMIN

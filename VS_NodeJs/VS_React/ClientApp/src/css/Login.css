@@ -1,6 +1,9 @@
 #subm{
     margin:10px;
     margin-left: 25%;
+    border: black;
+    border-radius: 5px;
+    border-width: 2px;
 }
 form{
     float: center;

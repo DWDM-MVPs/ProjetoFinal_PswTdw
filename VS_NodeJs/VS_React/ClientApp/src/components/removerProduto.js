@@ -44,7 +44,7 @@ class RemoverProduto extends Component {
 					<br />
 					<br />
 					<br/><br/><br/>
-					<button id="AddPro" type="submit">Adicionar Produto</button>
+					<button id="AddPro" type="submit">Remover Produto</button>
 				</form>
 			</div>
 		);

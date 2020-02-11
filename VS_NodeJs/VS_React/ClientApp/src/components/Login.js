@@ -47,7 +47,7 @@ export default class Login extends Component {
 
 	render() {
 		return (
-			<form onSubmit={this.onSubmit}>
+			<form onSubmit={this.onSubmit} id="login">
 				<h1>Login Below!</h1>
 				<br/>
 				<input

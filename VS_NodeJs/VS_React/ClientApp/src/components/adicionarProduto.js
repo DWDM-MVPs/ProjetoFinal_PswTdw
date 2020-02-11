@@ -28,10 +28,20 @@ class AdicionarProduto extends Component {
 	newProduto = (e) =>{
 		e.preventDefault();
 
-		PRODUTOS_NEW_PRODUTO(this.state.Produto)
-		.then(result=>{
-			console.log(result.status)
-		})
+		fetch("http://83.132.83.200:1337/api/produtos/add-produto", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(
+				{
+					token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpYXQiOjE1ODE0NjQ1MzUsImV4cCI6MTU4MTQ2ODEzNX0.qMOOLD2DJFAtwI1swztTCtthv-De7i_jDGJMqS96nck",
+					name: this.state.name,
+					stock: this.state.stock,
+					price: this.state.price,
+					allergens: this.state.allergens,
+					isActive: this.state.isActive,
+				}
+			),
+		}).then((response) => {return response});
 	}
 
 

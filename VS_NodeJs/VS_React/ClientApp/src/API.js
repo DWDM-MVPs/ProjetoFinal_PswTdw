@@ -7,11 +7,7 @@ export function PRODUTOS_GET_PRODUTOS() {
 	fetch(routeProdutos + "/get-produtos", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-	})
-		.then((response) => response.json())
-		.then((responseJson) => {
-			return responseJson;
-		})
+	}).then((response) => {return response});
 }
 
 export function PRODUTOS_GET_PRODUTO(name) {
@@ -19,11 +15,7 @@ export function PRODUTOS_GET_PRODUTO(name) {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: { name: name },
-	})
-		.then((response) => response.json())
-		.then((responseJson) => {
-			return responseJson;
-		})
+	}).then((response) => {return response});
 }
 
 export function PRODUTOS_NEW_PRODUTO(name, stock, price, allergens, isActive) {
@@ -32,6 +24,7 @@ export function PRODUTOS_NEW_PRODUTO(name, stock, price, allergens, isActive) {
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(
 			{
+				token: localStorage.getItem("token"),
 				name: name,
 				stock: stock,
 				price: price,
@@ -39,38 +32,25 @@ export function PRODUTOS_NEW_PRODUTO(name, stock, price, allergens, isActive) {
 				isActive: isActive,
 			}
 		),
-	})
-		.then((response) => response.json())
-		.then((responseJson) => {
-			return responseJson;
-		})
+	}).then((response) => {return response});
 }
 
-export function PRODUTOS_UPDATE_PRODUTO(Produto) {
+export function PRODUTOS_UPDATE_PRODUTO(oldName, name, stock, price, allergens, isActive) {
 	fetch(routeProdutos + "/update-produto", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(Produto)
-	})
-		.then((response) => response.json())
-		.then((responseJson) => {
-			return responseJson;
-		})
-}
-
-export function PRODUTOS_UPDATE_PRODUTO_ONLY_PRICE(name, price) {
-	fetch(routeProdutos + "/update-produto/only-price", {
-		method: "POST",
-		headers: { "Content-Type": "application/json" },
-		body: {
-			name: name,
-			price: price,
-		},
-	})
-		.then((response) => response.json())
-		.then((responseJson) => {
-			return responseJson;
-		})
+		body: JSON.stringify(
+			{
+				token: localStorage.getItem("token"),
+				oldName: oldName,
+				name: name,
+				stock: stock,
+				price: price,
+				allergens: allergens,
+				isActive: isActive,
+			}
+		),
+	}).then((response) => {return response});
 }
 
 export function PRODUTOS_UPDATE_PRODUTO_ONLY_STOCK(name, stock) {
@@ -78,14 +58,11 @@ export function PRODUTOS_UPDATE_PRODUTO_ONLY_STOCK(name, stock) {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: {
+			token: localStorage.getItem("token"),
 			name: name,
 			stock: stock,
 		},
-	})
-		.then((response) => response.json())
-		.then((responseJson) => {
-			return responseJson;
-		})
+	}).then((response) => {return response});
 }
 
 export function PRODUTOS_DELETE_PRODUTO(name) {
@@ -93,13 +70,10 @@ export function PRODUTOS_DELETE_PRODUTO(name) {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: {
+			token: localStorage.getItem("token"),
 			name: name,
 		},
-	})
-		.then((response) => response.json())
-		.then((responseJson) => {
-			return responseJson;
-		})
+	}).then((response) => {return response});
 }
 
 export function USERS_GET_USER_BY_NAME(name) {
@@ -109,42 +83,58 @@ export function USERS_GET_USER_BY_NAME(name) {
 		body: {
 			name: name,
 		},
-	})
-		.then((response) => response.json())
-		.then((responseJson) => {
-			return responseJson;
-		})
+	}).then((response) => {return response});
 }
 
-export function USERS_UPDATE_CARRINHO(name, jsonCarrinho) {
-	fetch(routeUsers + "/users/update-carrinho", {
+export function USERS_GET_USER_BY_TOKEN() {
+	fetch(routeUsers + "/get-user/by-token", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: {
-			name: name,
+			token: localStorage.getItem("token"),
 		},
-	})
-		.then((response) => response.json())
-		.then((responseJson) => {
-			return responseJson;
-		})
+	}).then((response) => {return response});
 }
 
-export function USERS_LOGIN(name,password) {
-	fetch(routeUsers + "/users/update-carrinho", {
+export function USERS_CARRINHO_ADD_PRODUTO(name) {
+	fetch(routeUsers + "/carrinho/add-produto", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: {
+			token: localStorage.getItem("token"),
 			name: name,
-			password:password,
-		},
-	})
-		.then((response) => response.json())
-		.then((responseJson) => {
-			return responseJson;
-		})
+		}
+	}).then((response) => {return response});
+}
+
+export function USERS_CARRINHO_REMOVE_PRODUTO(name) {
+	fetch(routeUsers + "/carrinho/remove-produto", {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: {
+			token: localStorage.getItem("token"),
+			name: name,
+		}
+	}).then((response) => {return response});
 }
 
 export function USERS_CLOSE_CARRINHO() {
+	fetch(routeUsers + "/carrinho/close-carrinho", {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: {
+			token: localStorage.getItem("token"),
+		}
+	}).then((response) => {return response});
+}
 
+export function USERS_LOGIN(name, password) {
+	fetch(routeUsers + "/users/update-carrinho", {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: {
+			name: name,
+			password: password,
+		},
+	}).then((response) => {return response});
 }

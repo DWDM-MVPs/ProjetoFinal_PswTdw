@@ -1,0 +1,135 @@
+# ================ #
+# = # PRODUTOS # = #
+# ================ #
+
+GET ALL PRODUTOS - /api/produtos/get-produtos
+
+
+
+GET PRODUTO BY NAME - /api/produtos/get-produto
+body:
+	name
+
+
+
+ADD PRODUTO - /api/produtos/add-produto
+body:
+	token
+	name
+	stock
+	price
+	allergens
+	isActive
+
+
+
+UDPATE PRODUTO - /api/produtos/update-produto
+body:
+	token
+	oldName
+	name
+	stock
+	price
+	allergens
+	isActive
+
+
+
+UDPATE STOCK PRODUTO - /api/produtos/update-produtos/only-stock
+body:
+	token
+	name
+	stock
+
+
+
+DELETE PRODUTO - /api/produtos/delete-produto
+body:
+	token
+	name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ==================== #
+# = # UTILIZADORES # = #
+# ==================== #
+
+GET USER BY NAME - /api/users/get-user/by-name
+body:
+	name
+
+
+
+GET USER BY TOKEN - /api/users/get-user/by-token
+body:
+	token
+
+
+
+ADD PRODUTO TO CARRINHO - /api/users/carrinho/add-produto
+body:
+	token
+	name
+
+
+
+REMOVE PRODUTO FROM CARRINHO - /api/users/carrinho/remove-produto
+body:
+	token
+	name
+
+
+
+CLOSE CARRINHO - /api/users/carrinho/close-carrinho
+body:
+	token
+
+
+
+GET CARRINHO - /api/users/carrinho/get-carrinho
+body:
+	token
+
+
+
+LOGIN - /api/users/login
+body:
+	name
+	password
+
+
+
+USER IS ADMIN? - /api/users/is-admin
+body:
+	token
+
+
+
+ADD USER - /api/users/add-user
+body:
+	token
+	name
+	password
+
+
+
+REMOVE USER - /api/users/remove-user
+body:
+	token
+	name

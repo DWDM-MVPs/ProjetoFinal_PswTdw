@@ -190,7 +190,7 @@ apiUsers.route("/users/carrinho/remove-produto").post(function (req, res)
 
 
 // ❎ CLOSE CARRINHO
-apiUsers.route("/users/close-carrinho").post(function (req, res)
+apiUsers.route("/users/carrinho/close-carrinho").post(function (req, res)
 {
 				log("r", "s", "/users/close-carrinho: " + req.body.token);
 				verifyToken(req.body.token, function (error, username)
@@ -303,7 +303,7 @@ apiUsers.route("/users/close-carrinho").post(function (req, res)
 
 
 // ❎ GET CARRINHO
-apiUsers.route("/users/get-carrinho").post(function (req, res)
+apiUsers.route("/users/carrinho/get-carrinho").post(function (req, res)
 {
 				log("r", "s", "/users/get-carrinho: " + req.body.token);
 				verifyToken(req.body.token, function (error, username)

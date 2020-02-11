@@ -4,3 +4,4 @@ C:\Milkenm\Escola\IPV\GitHub DWDM\ProjetoFinal_PswTdw\VS_NodeJs\VS_NodeJs\obj\De
 C:\Milkenm\Escola\IPV\GitHub DWDM\ProjetoFinal_PswTdw\VS_NodeJs\VS_NodeJs\bin\Microsoft.NodejsTools.WebRole.dll
 C:\Users\migcampos\Desktop\DWDM\TDW\ProjetoFinal_PswTdw\VS_NodeJs\VS_NodeJs\obj\Debug\NodeJs.njsproj.CoreCompileInputs.cache
 C:\Users\migcampos\Desktop\DWDM\TDW\ProjetoFinal_PswTdw\VS_NodeJs\VS_NodeJs\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Milkenm\Escola\IPV\GitHub DWDM\ProjetoFinal_PswTdw\VS_NodeJs\VS_NodeJs\obj\Debug\NodeJs.njsprojAssemblyReference.cache

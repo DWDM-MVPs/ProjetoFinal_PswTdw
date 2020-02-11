@@ -170,6 +170,49 @@ apiUsers.route("/users/close-carrinho").post(function (req, res)
 												{
 																res.status(500).send();
 												}
+
+												var preco;
+												carrinho.forEach(function (value, index, array)
+												{
+																schemaProdutos.findOne({ name: value }, function (error, produto)
+																{
+																				if (error)
+																				{
+																								res.status(500).json(error).send();
+																				}
+
+																				preco = preco + produto.price;
+																})
+												});
+
+												if (user.balance < preco)
+												{
+																res.status(500).send("Saldo insuficiente");
+												}
+
+												carrinho.forEach(function (value, index, array)
+												{
+																schemaProdutos.findOne({ name: value }, function (error, produto)
+																{
+																				if (error)
+																				{
+																								res.status(500).json(error).send();
+																				}
+
+																				produto.stock = produto.stock - 1;
+
+																				produto.save(function (error)
+																				{
+																								if (error)
+																								{
+																												res.status(500).json(error).send()
+																								}
+																				});
+																});
+												});
+												user.balance = user.balance - preco;
+
+
 												var historico = user.historico || [];
 												historico.push(carrinho);
 
@@ -191,11 +234,12 @@ apiUsers.route("/users/close-carrinho").post(function (req, res)
 });
 
 
+
 // ✅ GET CARRINHO
 apiUsers.route("/users/get-carrinho").post(function (req, res)
 {
 				log("r", "s", "/users/get-carrinho: " + req.body.token);
-				
+
 				verifyToken(req.body.token, function (err, username)
 				{
 								if (err)

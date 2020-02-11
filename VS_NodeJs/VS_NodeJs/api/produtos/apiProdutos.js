@@ -181,7 +181,7 @@ apiProdutos.route(route_updateStockProduto).post(function (req, res)
 var route_deleteProduto = "/produtos/delete-produto";
 apiProdutos.route(route_deleteProduto).post(function (req, res)
 {
-				log("ERROR", "START", route_deleteProduto + logStartTags + "Name: " + req.body.name + logEndTags);
+				log("REQUEST", "START", route_deleteProduto + logStartTags + "Name: " + req.body.name + logEndTags);
 
 				schemaProdutos.deleteOne({ name: req.body.name }, function (error)
 				{

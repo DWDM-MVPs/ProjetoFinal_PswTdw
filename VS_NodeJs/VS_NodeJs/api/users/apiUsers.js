@@ -361,6 +361,96 @@ apiUsers.route("/users/is-admin").post(function (req, res)
 
 
 
+// ❎ ADD USER
+apiUsers.route("/users/add-user").post(function (req, res)
+{
+				verifyToken(req.body.token, function (error, username)
+				{
+								if (error)
+								{
+												res.status(500).send(lang.invalidToken);
+								}
+								else
+								{
+												schemaUsers.findOne({ name: username }, function (error, user)
+												{
+																if (user.isAdmin == true)
+																{
+																				if (error)
+																				{
+																								res.status(500).send(lang.invalidToken);
+																				}
+																				else
+																				{
+																								var novoUser = new schemaUsers({
+																												name: req.body.name,
+																												password: req.body.password,
+																								});
+
+																								novoUser.save(function (error)
+																								{
+																												if (error)
+																												{
+																																console.log(error);
+																																res.status(500).send(lang.saveError);
+																												}
+																												else
+																												{
+																																res.status(200).send();
+																												}
+																								});
+																				}
+																}
+																else
+																{
+																				res.status(500).send(lang.noPermission);
+																}
+												});
+								}
+				});
+});
+
+
+
+// ❎ REMOVE USER
+apiUsers.route("/users/remove-user").post(function (req, res)
+{
+				verifyToken(req.body.token, function (error, username)
+				{
+								schemaUsers.findOne({ name: username }, function (error, user)
+								{
+												if (user.isAdmin)
+												{
+																if (error)
+																{
+																				res.status(500).send(lang.invalidToken);
+																}
+																else
+																{
+																				schemaProdutos.deleteOne({ name: req.body.name }, function (error)
+																				{
+																								if (error)
+																								{
+																												console.log(error);
+																												res.status(500).send(lang.error);
+																								}
+																								else
+																								{
+																												res.status(200).send();
+																								}
+																				});
+																}
+												}
+												else
+												{
+																res.status(500).send(lang.noPermission);
+												}
+								});
+				});
+});
+
+
+
 
 
 // EXPORT API

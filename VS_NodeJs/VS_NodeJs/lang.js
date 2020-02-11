@@ -6,4 +6,5 @@
 				notFound: "O objeto não foi encontrado.",
 				saveError: "Ocorreu um erro ao guardar os dados.",
 				cartEmpty: "O carrinho está vazio.",
+				noPermission: "Sem permissão.",
 }

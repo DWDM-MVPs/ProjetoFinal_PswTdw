@@ -6,6 +6,8 @@ import Carrinho from "./components/Carrinho";
 import Produtos from "./components/Produtos";
 import AdicionarProduto from "./components/adicionarProduto";
 import EditarProduto from "./components/editarProduto";
+import RemoverProduto from "./components/removerProduto";
+import Utilizador from "./components/Utilizador";
 
 export default class App extends Component {
 	displayName = App.name
@@ -19,6 +21,8 @@ export default class App extends Component {
 				<Route path="/login" component={Login} />
 				<Route path="/adicionarProduto" component={AdicionarProduto} />
 				<Route path="/editarProduto" component={EditarProduto} />
+				<Route path="/removerProduto" component={RemoverProduto} />
+				<Route path="/Utilizador" component={Utilizador} />
 			</Layout>
 		);
 	}

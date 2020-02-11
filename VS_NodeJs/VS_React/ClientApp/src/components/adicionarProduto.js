@@ -33,29 +33,13 @@ class AdicionarProduto extends Component {
 			console.log(result.status)
 		})
 	}
-	adicionarProdutO = (e) =>{
-		e.preventDefault();
-		const res = fetch('http://192.168.43.138:1337/api/produtos/add-produto', {
-		  method: 'post',
-		  headers: { 'Content-Type': 'application/json' },
-		  body: JSON.stringify({ name: "", stock: ' ', price: ' ', allergens: ' ', isActive: ' ' }),
-	
-		})
-		  .then((response) => response.json())
-		  .then((responseJson) => {
-			return responseJson.movies;
-		  })
-		  .catch((error) => {
-			console.error(error);
-		  });
-		console.log(res);
-	  }
+
 
 
 	render() {
 		return (
 			<div id="forms">
-				<form action="/action_page.php" onSubmit={(e) => this.ad(e)}>
+				<form action="/action_page.php" onSubmit={(e) => this.newProduto(e)}>
 					Name: 
 					<input type="text" name="name" onChange={this.handleChange} />
 					<br />
@@ -88,3 +72,23 @@ class AdicionarProduto extends Component {
 	}
 }
 export default AdicionarProduto;
+
+/*
+	adicionarProdutO = (e) =>{
+		e.preventDefault();
+		const res = fetch('83.132.83.200:1337/api/produtos/add-produto', {
+		  method: 'post',
+		  headers: { 'Content-Type': 'application/json' },
+		  body: JSON.stringify({ name: "", stock: ' ', price: ' ', allergens: ' ', isActive: ' ' }),
+	
+		})
+		  .then((response) => response.json())
+		  .then((responseJson) => {
+			return responseJson.movies;
+		  })
+		  .catch((error) => {
+			console.error(error);
+		  });
+		console.log(res);
+	  }
+*/ 

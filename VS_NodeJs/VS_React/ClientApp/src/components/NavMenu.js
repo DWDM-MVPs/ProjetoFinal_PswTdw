@@ -42,6 +42,17 @@ export class NavMenu extends Component {
 							</NavItem>
 						</LinkContainer>
 
+						<LinkContainer to={'/removerProduto'} exact>
+							<NavItem>
+								<Glyphicon glyph='list-alt' /> Remover Produto
+							</NavItem>
+						</LinkContainer>
+
+						<LinkContainer to={'/utilizador'} exact>
+							<NavItem>
+								<Glyphicon glyph='glyphicon-user' /> Utilizador
+							</NavItem>
+						</LinkContainer>
 
 					</Nav>
 				</Navbar.Collapse>

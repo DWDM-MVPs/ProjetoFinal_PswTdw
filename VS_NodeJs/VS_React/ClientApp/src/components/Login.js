@@ -1,84 +1,81 @@
-import React, { Component } from 'react';
-import '../css/Login.css';
+import React, { Component } from "react";
 
-class Login extends Component {
-	constructor() {
-		super();
-		this.state = {
-			usernumb: '',
-			password: '',
-			error: '',
-			isLogged: false,
-		};
 
-		this.handlePassChange = this.handlePassChange.bind(this);
-		this.handleUserChange = this.handleUserChange.bind(this);
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.dismissError = this.dismissError.bind(this);
-	}
+export default class Login extends Component
+{
+				constructor(props)
+				{
+								super(props)
+								this.state = {
+												name: "",
+												password: ""
+								};
+				}
 
-	dismissError() {
-		this.setState({ error: '' });
-	}
 
-	handleSubmit(evt) {
-		evt.preventDefault();
+				handleInputChange = (event) =>
+				{
+								const { value, name } = event.target;
+								this.setState({
+												[name]: value
+								});
+				}
 
-		var user = this.state.usernumb;
-		var pass = this.state.password;
 
-		if (!this.state.usernumb && !this.state.password) {
-			return this.setState({ error: 'User Number & Password are required' });
-		}
-		else if (!this.state.usernumb) {
-			return this.setState({ error: 'User Number is required' });
-		}
-		else if (!this.state.password) {
-			return this.setState({ error: 'Password is required' });
-		}
-		return this.setState({ alert: 'Successful login' });
-	}
+				onSubmit = (event) =>
+				{
+								event.preventDefault();
+								fetch('/api/users/login', {
+												method: 'POST',
+												body: JSON.stringify(this.state),
+												headers: {
+																'Content-Type': 'application/json'
+												}
+								})
+												.then(res =>
+												{
+																if (res.status === 200)
+																{
+																				alert("login efetuado com sucesso");
+																				this.props.history.push('/');
+																}
+																else
+																{
+																				const error = new Error(res.error);
+																				throw error;
+																}
+												})
+												.catch(err =>
+												{
+																console.error(err);
+																alert('Error logging in please try again');
+												});
+				}
 
-	handleUserChange(evt) {
-		this.setState({
-			usernumb: evt.target.value,
-		});
-	};
 
-	handlePassChange(evt) {
-		this.setState({
-			password: evt.target.value,
-		});
-	};
-
-	handleLog(e) {
-
-	}
-
-	render() {
-
-		return (
-			<div className="Login">
-				<form onSubmit={this.handleSubmit}>
-					{
-						this.state.error &&
-						<h3 data-test="error" >
-							{alert(this.state.error)}
-						</h3>
-					}
-					<div id="cenas">
-						<br />
-						<input type="number" maxlenght="5" placeholder="User Number" data-test="usernumb" value={this.state.usernumb} onChange={this.handleUserChange} />
-						<br />
-						<br />
-						<input type="password" placeholder="Password" data-test="password" value={this.state.password} onChange={this.handlePassChange} />
-						<br />
-						<input type="submit" value="Log In" data-test="submit" id="subm" />
-					</div>
-				</form>
-			</div>
-		);
-	}
+				render()
+				{
+								return (
+												<form onSubmit={this.onSubmit}>
+																<h1>Login Below!</h1>
+																<input
+																				type="email"
+																				name="email"
+																				placeholder="Enter email"
+																				value={this.state.name}
+																				onChange={this.handleInputChange}
+																				required
+																/>
+																<input
+																				type="password"
+																				name="password"
+																				placeholder="Enter password"
+																				value={this.state.password}
+																				onChange={this.handleInputChange}
+																				required
+																/>
+																<input type="submit" value="Submit" />
+												</form>
+								);
+				}
 }
-
-export default Login;
